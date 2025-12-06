@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Somalia Notary Public Directory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
         :root {
             --primary-color: #2c3e50;
@@ -186,6 +188,19 @@
             padding: 12px 15px;
         }
         
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #333;
+            font-style: italic;
+        }
+        
+        .search-prompt {
+            text-align: center;
+            padding: 40px;
+            color: #333
+        }
+        
         .pagination {
             display: flex;
             justify-content: center;
@@ -254,10 +269,31 @@
     </style>
 </head>
 <body>
+     <!-- Sidebar -->
+    <div class="w-64 h-screen bg-blue-700 text-white flex flex-col p-5 shadow-lg fixed top-0 left-0">
+        <h1 class="text-2xl font-bold mb-10">Boqole Notory</h1>
+        <nav class="flex flex-col space-y-4">
+            <a href="Isku_Xayire.html" class="hover:bg-blue-600 px-4 py-2 rounded-lg">Isku Xayire</a>
+            <a href="Rag_Rag_kale_uXayirayo.html" class="hover:bg-blue-600 px-4 py-2 rounded-lg">Rag Rag kale u Xayirayo</a>
+            <a href="Rag_Dumar_u_Xayirayo.html" class="hover:bg-blue-600 px-4 py-2 rounded-lg">Rag Dumar u Xayirayo</a>
+            <a href="Aasid_Shirkad.html" class="hover:bg-blue-600 px-4 py-2 rounded-lg">Aas'aasid Shirkad Hal Qof</a>
+            <a href="AasAsid_Shirkad_Dad_Badan.html" class="hover:bg-blue-600 px-4 py-2 rounded-lg">Aas'aasid Shirkad Dad Badan</a>
+            <a href="Sponsorshipwiil.html" class="hover:bg-blue-600 px-4 py-2 rounded-lg">Sponsorship Wiil</a>
+            <a href="Sponsorshipgabar.html" class="hover:bg-blue-600 px-4 py-2 rounded-lg">Sponsorship Gabar</a>
+            <a href="Wakaalad.html" class="hover:bg-blue-600 px-4 py-2 rounded-lg">Wakaalad</a>
+            <a href="NotoryList.html" class="bg-blue-600 px-4 py-2 rounded-lg">Notory List</a>
+            <a href="XayiradSaami.html" class="hover:bg-blue-600 px-4 py-2 rounded-lg">Xayiraad Taaj </a>
+        
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-1 p-8 ml-64">
     <div class="container">
-        <header>
+        </div>
+        <header class="bg-blue-600">
             <h1>Somalia Notary Public Directory</h1>
-            <p>Official registry of notary publics across Somalia</p>
+            <p>Registry of notary publics across Somalia</p>
         </header>
         
         <div class="filters">
@@ -309,7 +345,7 @@
         
         <div class="table-container">
             <table id="notary-table">
-                <thead>
+                <thead class="bg-blue-600">
                     <tr>
                         <th data-sort="id">ID</th>
                         <th data-sort="name">Full Name</th>
@@ -332,13 +368,14 @@
         </div>
         
         <footer>
-            <p>&copy; 2023 Somalia Notary Public Directory | Data as of latest update</p>
-        </footer>
+    <p>&copy; <span id="currentYear"></span> Somalia Notary Public Directory | Data as of latest update</p>
+</footer>
     </div>
 
     <script>
         // Sample data structure (in a real application, this would come from an API)
-        const notaries = [
+          
+          const notaries = [
                     {id: 1, name: "Asad Maxamed Maxamuud Wehliye", notaryName: "Aayatiin", district: "Hoden Dabaqa TCC", region: "Banaadir", issueDate: "27 AUGUST 2025"},
             {id: 2, name: "Axmed Yuusuf Abtidoon", notaryName: "Abtidoon", district: "Warta-Nabada Labbo Dhagax", region: "Banaadir", issueDate: "27 AUGUST 2025"},
             {id: 3, name: "Cabdikariim Xasan Nuur Maxamed", notaryName: "Aflax", district: "Dayniile Aargadda Raadayrka", region: "Banaadir", issueDate: "27 AUGUST 2025"},
@@ -658,81 +695,81 @@
             {id: 317, name: "Feysal Cabdirashiid Axmed", notaryName: "Damal", district: "Afgooye Ceelasha", region: "Sh. Hoose", issueDate: "27 AUGUST 2025"},
             {id: 318, name: "Maxamed Cali Maxamuud Xeyle", notaryName: "Lafoole", district: "Afgooye Ceelasha", region: "Sh. Hoose", issueDate: "27 AUGUST 2025"},
             {id: 319, name: "Cabdiraxiim Maxamuud Maxamed", notaryName: "Durdur", district: "ERAAKA", region: "Togdheer", issueDate: "27 AUGUST 2025"},
-            {id: 320, name: "Aadan Jimcaale Maxamed", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 321, name: "Aaden Cabdulqaadir Yaxye", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 322, name: "Abuubakar Yusuf Wardheere", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 323, name: "Axmed Ciise Cabdullaahi", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 324, name: "Axmed Maxamed Xasan (Mudey)", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 325, name: "Axmed Sh Cali Axmed Buraale", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 326, name: "Bashiir Maxamed Sheekh Maxamed", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 327, name: "Cabdinaasir Sh.Cali Jimcaale", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 328, name: "Cabdiraxmaan Warsame Siyaad", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 329, name: "Cabdi Aaden Macalin Cabdulle", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 330, name: "Cabdi Axmed Cali (Geedi)", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 331, name: "Cabdi Cabdullaahi Abtidoon", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 332, name: "Cabdi Cadaawe Cali", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 333, name: "Cabdifitaax Cumar Maxamed", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 334, name: "Cabdinaasir Abuukar Xaaji Dheere", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 335, name: "Cabdulqaadir Cumar Kaatib", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 336, name: "Cabdirashid Cabdullaahi Maxamed", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 337, name: "Cabdirashiid Cabdullaahi Maxamuud", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 338, name: "Cabdiraxman Maxamuud Cali (Time Cade)", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 339, name: "Cabdirisaaq Maxamed Cabdulle (Tiikey)", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 340, name: "Cabdirisaaq Xasan Cilmi", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 341, name: "Cabdulqaadir Cabdullaahi Maxamed", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 342, name: "Cabdulqaadir Yalaxow Hiraabe", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 343, name: "Cabdulwahaab Nuur Mahdi", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 344, name: "Cali Maxamuud Jimcaale", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 345, name: "Cali Sheekh Cabdi", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 346, name: "Cali Xaashi Cali Ugaas", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 347, name: "Cali Xasan Faarax", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 348, name: "Cali Yuusuf Xuseen", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 349, name: "Ciise Cabdirahman Maxamed", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 350, name: "Cismaan Maxamed Ismaaciil", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 351, name: "Cumar Maxamed Farax (Gomed)", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 352, name: "Daahir Cabdi Maxamuud (Boolis)", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 353, name: "Daahir Maxamuud Maxamed", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 354, name: "Daahir Xaaji Xasan Axmed", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 355, name: "Deeq Cabdi Rayid", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 356, name: "Ibraahim Maxamed Axmed", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 357, name: "Ibrahim Xasan Sheekh Xuseen", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 358, name: "Ismaacil Maxamed Cabdullaahi", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 359, name: "Khalif Sh Ibraahim Dhiblaawe", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 360, name: "Maxamed Diiriye Sabriye", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 361, name: "Maxamed Sh. Axmed Khaliif", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 362, name: "Maxamed Xuseen Xasan", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 363, name: "Maxamed Cabdulqaadir Sh.Xasan (Amiin)", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 364, name: "Maxamed Cali Nuur (Socdaal)", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 365, name: "Maxamed Cumar Ibraahim", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 366, name: "Maxamed Ibraahim Maxamed Cali", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 367, name: "Maxamed Sh Axmed Xasan", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 368, name: "Maxamed Xaaji Jimcaale (Biil)", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 369, name: "Maxamed Xaaji Shiikhey Abati", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 370, name: "Maxamuud Axmed Xasan (Dalab)", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 371, name: "Maxamuud Cali Cumar", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 372, name: "Muriidi Muumin Axmed", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 373, name: "Muumin Axmed Abubakar", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 374, name: "Muxuyadiin Xasan Maxamed", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 375, name: "Saciid Cali Cosoble", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 376, name: "Saciid Cali Maxamuud", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 377, name: "Sh Axmed Cali Cismaan", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 378, name: "Sh Cabdi limaan Cumar", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 379, name: "Xassan Sh. Maxamed Farxaan", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 380, name: "Xuseen Aaden Xasan Yaasiin", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 381, name: "Xuseen Maxamuud Muuse", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 382, name: "Xusseen Maxamed Calasow", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 383, name: "Yaasiin Cabdi Xasan", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 384, name: "Yoonis Cabdiraxman Maxamud Cali", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 385, name: "Yusuf Tuurxume Jimcaale", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 386, name: "Cabdikhadar Maxamed Xasan", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 387, name: "Idris Maxamed Cusmaan", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 388, name: "Liibaan Cabdullaahi Muumin", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 389, name: "Maxamed M.Maxamuud Cumar (Madoobe)", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 390, name: "Maxamed Xuseen Rooble", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 391, name: "Najiib Xasan Cumar Maxamed", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 392, name: "Xasan Maxamed Axmed (Suni)", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 393, name: "Maxamed Cusmaan Ibraahim", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
-            {id: 394, name: "Xuseen Isgow Xuseen", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "1,JUNE-2019"},
+            {id: 320, name: "Aadan Jimcaale Maxamed", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 321, name: "Aaden Cabdulqaadir Yaxye", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 322, name: "Abuubakar Yusuf Wardheere", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 323, name: "Axmed Ciise Cabdullaahi", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 324, name: "Axmed Maxamed Xasan (Mudey)", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 325, name: "Axmed Sh Cali Axmed Buraale", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 326, name: "Bashiir Maxamed Sheekh Maxamed", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 327, name: "Cabdinaasir Sh.Cali Jimcaale", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 328, name: "Cabdiraxmaan Warsame Siyaad", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 329, name: "Cabdi Aaden Macalin Cabdulle", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 330, name: "Cabdi Axmed Cali (Geedi)", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 331, name: "Cabdi Cabdullaahi Abtidoon", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 332, name: "Cabdi Cadaawe Cali", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 333, name: "Cabdifitaax Cumar Maxamed", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 334, name: "Cabdinaasir Abuukar Xaaji Dheere", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 335, name: "Cabdulqaadir Cumar Kaatib", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 336, name: "Cabdirashid Cabdullaahi Maxamed", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 337, name: "Cabdirashiid Cabdullaahi Maxamuud", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 338, name: "Cabdiraxman Maxamuud Cali (Time Cade)", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 339, name: "Cabdirisaaq Maxamed Cabdulle (Tiikey)", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 340, name: "Cabdirisaaq Xasan Cilmi", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 341, name: "Cabdulqaadir Cabdullaahi Maxamed", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 342, name: "Cabdulqaadir Yalaxow Hiraabe", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 343, name: "Cabdulwahaab Nuur Mahdi", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 344, name: "Cali Maxamuud Jimcaale", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 345, name: "Cali Sheekh Cabdi", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 346, name: "Cali Xaashi Cali Ugaas", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 347, name: "Cali Xasan Faarax", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 348, name: "Cali Yuusuf Xuseen", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 349, name: "Ciise Cabdirahman Maxamed", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 350, name: "Cismaan Maxamed Ismaaciil", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 351, name: "Cumar Maxamed Farax (Gomed)", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 352, name: "Daahir Cabdi Maxamuud (Boolis)", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 353, name: "Daahir Maxamuud Maxamed", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 354, name: "Daahir Xaaji Xasan Axmed", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 355, name: "Deeq Cabdi Rayid", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 356, name: "Ibraahim Maxamed Axmed", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 357, name: "Ibrahim Xasan Sheekh Xuseen", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 358, name: "Ismaacil Maxamed Cabdullaahi", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 359, name: "Khalif Sh Ibraahim Dhiblaawe", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 360, name: "Maxamed Diiriye Sabriye", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 361, name: "Maxamed Sh. Axmed Khaliif", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 362, name: "Maxamed Xuseen Xasan", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 363, name: "Maxamed Cabdulqaadir Sh.Xasan (Amiin)", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 364, name: "Maxamed Cali Nuur (Socdaal)", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 365, name: "Maxamed Cumar Ibraahim", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 366, name: "Maxamed Ibraahim Maxamed Cali", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 367, name: "Maxamed Sh Axmed Xasan", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 368, name: "Maxamed Xaaji Jimcaale (Biil)", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 369, name: "Maxamed Xaaji Shiikhey Abati", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 370, name: "Maxamuud Axmed Xasan (Dalab)", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 371, name: "Maxamuud Cali Cumar", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 372, name: "Muriidi Muumin Axmed", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 373, name: "Muumin Axmed Abubakar", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 374, name: "Muxuyadiin Xasan Maxamed", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 375, name: "Saciid Cali Cosoble", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 376, name: "Saciid Cali Maxamuud", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 377, name: "Sh Axmed Cali Cismaan", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 378, name: "Sh Cabdi limaan Cumar", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 379, name: "Xassan Sh. Maxamed Farxaan", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 380, name: "Xuseen Aaden Xasan Yaasiin", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 381, name: "Xuseen Maxamuud Muuse", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 382, name: "Xusseen Maxamed Calasow", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 383, name: "Yaasiin Cabdi Xasan", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 384, name: "Yoonis Cabdiraxman Maxamud Cali", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 385, name: "Yusuf Tuurxume Jimcaale", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 386, name: "Cabdikhadar Maxamed Xasan", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 387, name: "Idris Maxamed Cusmaan", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 388, name: "Liibaan Cabdullaahi Muumin", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 389, name: "Maxamed M.Maxamuud Cumar (Madoobe)", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 390, name: "Maxamed Xuseen Rooble", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 391, name: "Najiib Xasan Cumar Maxamed", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 392, name: "Xasan Maxamed Axmed (Suni)", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 393, name: "Maxamed Cusmaan Ibraahim", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
+            {id: 394, name: "Xuseen Isgow Xuseen", notaryName: "MA LAHAN)", district: "MA LAHAN", region: "Banaadir", issueDate: "1 JUNE 2019"},
             {id: 395, name: "Kayse Saciid Cartan", notaryName: "Qaaddi", district: "Boondheere Wadada Jubba", region: "Banaadir", issueDate: "18 JULY 2024"},
             {id: 396, name: "Cumar Faarax Axmed", notaryName: "Baraawe", district: "Cabdicasiis Marinaaya", region: "Banaadir", issueDate: "18 JULY 2024"},
             {id: 397, name: "Cali Abuukar Xaayow", notaryName: "Cali Marduuf", district: "Cabdicasiis Waxda Lowyacade", region: "Banaadir", issueDate: "18 JULY 2024"},
@@ -1003,7 +1040,7 @@
             {id: 662, name: "Xasan Maxamed Cusmaan Cumar", notaryName: "XasanBile", district: "Afgooye Ceelasha", region: "Sh.Hoose", issueDate: "18 JULY 2024"},
             {id: 663, name: "Zakariye Mahad Diiriye", notaryName: "Xog-Ogaal", district: "Afgooye Ceelasha", region: "Sh.Hoose", issueDate: "18 JULY 2024"},
             {id: 664, name: "Cabdixakiim Cabdiqaadir Muudey", notaryName: "Zoobe", district: "Afgooye Ceelasha", region: "Sh.Hoose", issueDate: "18 JULY 2024"},
-            {id: 665, name: "Cabdiraxiim Maxamuud Maxamed", notaryName: "Durdur", district: "Buuhoodle", region: "FEDERAALKA Fogdheer", issueDate: "18 JULY 2024"},
+            {id: 665, name: "Cabdiraxiim Maxamuud Maxamed", notaryName: "Durdur", district: "Buuhoodle", region: "Togdheer", issueDate: "18 JULY 2024"},
             {id: 666, name: "Cabdi Axmed Cali Geedi", notaryName: "Ummadda", district: "Afgooye Ceelasha Biyaha", region: "Sh Hoose", issueDate: "10 DECEMBER 2022"},
             {id: 667, name: "Ismaaciil Macalin Maxamuud Cali", notaryName: "Salaama", district: "Afgooye Ceelasha Biyaha", region: "Banaadir", issueDate: "10 DECEMBER 2022"},
             {id: 668, name: "Zakariye Axmed Xasan", notaryName: "Rodol", district: "Boondheere Siinaay", region: "Banaadir", issueDate: "10 DECEMBER 2022"},
@@ -1214,61 +1251,61 @@
             {id: 873, name: "Xasan Maxamed Nuur", notaryName: "Abuuraas", district: "Kismaayo", region: "Jub.Hoose", issueDate: "10 DECEMBER 2022"},
             {id: 874, name: "Ismaaciil Xasan Wehliye", notaryName: "Wehliye", district: "Kismaayo", region: "Jub.Hoose", issueDate: "10 DECEMBER 2022"},
             {id: 875, name: "Cabdulxakiim Shaafi Yuusuf", notaryName: "Shaafi", district: "Kismaayo", region: "Jub.Hoose", issueDate: "10 DECEMBER 2022"},
-            {id: 876, name: "Aadan Jimcaale Maxamed", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 877, name: "Aaden Cabdulqaadir Yaxye", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 878, name: "Abuubakar Yusuf Wardheere", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 879, name: "Axmed Ciise Cabdullaahi", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 880, name: "Axmed Sh Cali Axmed Buraale", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 881, name: "Bashiir Maxamed Sheekh Maxamed", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 882, name: "Cabdi Aaden Macalin Cabdulle", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 883, name: "Cabdi Axmed Cali (Geedi)", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 884, name: "Cabdi Cabdullaahi Abtidoon", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 885, name: "Cabdi Cadaawe Cali", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 886, name: "Cabdi Yuusuf Xasan Maahir", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 887, name: "Cabdifitaax Cumar Maxamed", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 888, name: "Cabdinaasir Abuukar Xaaji Dheere", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 889, name: "Cabdinaasir Sh.Cali Jimcaale", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 890, name: "Cabdirashid Cabdullaahi Maxamed", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 891, name: "Cabdirashiid Cabdullaahi Maxamuud", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 892, name: "Cabdiraxmaan Warsame Siyaad", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 893, name: "Cabdiraxman Maxamuud Cali (Time Cade)", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 894, name: "Cabdirisaaq Maxamed Cabdulle (Tiikey)", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 895, name: "Cabdirisaaq Xasan Cilmi", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 896, name: "Cabdullaahi Faarax Qaarey", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 897, name: "Cabdulqaadir Cabdullaahi Maxamed", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 898, name: "Cabdulqaadir Cumar Kaatib", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 899, name: "Cabdulqaadir Yalaxow Hiraabe", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 900, name: "Cabdulwaaxid Maxamed Xuseen (Wakiil)", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 901, name: "Cabdulwahaab Nuur Mahdi", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 902, name: "Cali Maxamuud Jimcaale", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 903, name: "Cali Sheekh Cabdi", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 904, name: "Cali Xaashi Cali Ugaas", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 905, name: "Cali Xasan Faarax", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 906, name: "Cali Yuusuf Xuseen", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 907, name: "Ciise Cabdirahman Maxamed", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 908, name: "Cismaan Maxamed Ismaaciil", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 909, name: "Cumar Maxamed Farax (Gomed)", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 910, name: "Daahir Cabdi Maxamuud (Boolis)", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 911, name: "Daahir Maxamuud Maxamed", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 912, name: "Daahir Xaaji Xasan Axmed", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 913, name: "Deeq Cabdi Rayid", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 914, name: "Ibraahim Maxamed Axmed", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 915, name: "Ibrahim Xasan Sheekh Xuseen", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 916, name: "Idris Maxamed Cusmaan", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 917, name: "Ismaacil Maxamed Cabdullaahi", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 918, name: "Khalif Sh Ibraahim Dhiblaawe", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 919, name: "Maxamed Diiriye Sabriye", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 920, name: "Maxamed Sh. Axmed Khaliif", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 921, name: "Maxamed Xuseen Xasan", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 922, name: "Maxamed Cabdulqaadir Sh. Xasan (Amiin)", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 923, name: "Maxamed Cali Nuur (Socdaal)", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
-            {id: 924, name: "Maxamed Cumar Ibraahim", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Gobolka Banaadir", issueDate: "5 August 2020"},
+            {id: 876, name: "Aadan Jimcaale Maxamed", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 877, name: "Aaden Cabdulqaadir Yaxye", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 878, name: "Abuubakar Yusuf Wardheere", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 879, name: "Axmed Ciise Cabdullaahi", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 880, name: "Axmed Sh Cali Axmed Buraale", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 881, name: "Bashiir Maxamed Sheekh Maxamed", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 882, name: "Cabdi Aaden Macalin Cabdulle", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 883, name: "Cabdi Axmed Cali (Geedi)", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 884, name: "Cabdi Cabdullaahi Abtidoon", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 885, name: "Cabdi Cadaawe Cali", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 886, name: "Cabdi Yuusuf Xasan Maahir", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 887, name: "Cabdifitaax Cumar Maxamed", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 888, name: "Cabdinaasir Abuukar Xaaji Dheere", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 889, name: "Cabdinaasir Sh.Cali Jimcaale", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 890, name: "Cabdirashid Cabdullaahi Maxamed", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 891, name: "Cabdirashiid Cabdullaahi Maxamuud", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 892, name: "Cabdiraxmaan Warsame Siyaad", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 893, name: "Cabdiraxman Maxamuud Cali (Time Cade)", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 894, name: "Cabdirisaaq Maxamed Cabdulle (Tiikey)", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 895, name: "Cabdirisaaq Xasan Cilmi", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 896, name: "Cabdullaahi Faarax Qaarey", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 897, name: "Cabdulqaadir Cabdullaahi Maxamed", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 898, name: "Cabdulqaadir Cumar Kaatib", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 899, name: "Cabdulqaadir Yalaxow Hiraabe", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 900, name: "Cabdulwaaxid Maxamed Xuseen (Wakiil)", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 901, name: "Cabdulwahaab Nuur Mahdi", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 902, name: "Cali Maxamuud Jimcaale", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 903, name: "Cali Sheekh Cabdi", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 904, name: "Cali Xaashi Cali Ugaas", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 905, name: "Cali Xasan Faarax", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 906, name: "Cali Yuusuf Xuseen", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 907, name: "Ciise Cabdirahman Maxamed", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 908, name: "Cismaan Maxamed Ismaaciil", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 909, name: "Cumar Maxamed Farax (Gomed)", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 910, name: "Daahir Cabdi Maxamuud (Boolis)", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 911, name: "Daahir Maxamuud Maxamed", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 912, name: "Daahir Xaaji Xasan Axmed", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 913, name: "Deeq Cabdi Rayid", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 914, name: "Ibraahim Maxamed Axmed", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 915, name: "Ibrahim Xasan Sheekh Xuseen", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 916, name: "Idris Maxamed Cusmaan", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 917, name: "Ismaacil Maxamed Cabdullaahi", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 918, name: "Khalif Sh Ibraahim Dhiblaawe", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 919, name: "Maxamed Diiriye Sabriye", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 920, name: "Maxamed Sh. Axmed Khaliif", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 921, name: "Maxamed Xuseen Xasan", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 922, name: "Maxamed Cabdulqaadir Sh. Xasan (Amiin)", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 923, name: "Maxamed Cali Nuur (Socdaal)", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
+            {id: 924, name: "Maxamed Cumar Ibraahim", notaryName: "MA LAHAN", district: "MA LAHAN", region: "Banaadir", issueDate: "5 August 2020"},
     {
         id: 925,
         name: "Maxamed Ibraahim Maxamed Cali",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1276,7 +1313,7 @@
         name: "Maxamed Sh Axmed Xasan",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1284,7 +1321,7 @@
         name: "Maxamed Sh C/raxman Abuubakar",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1292,7 +1329,7 @@
         name: "Maxamed Xaaji Jimcaale (Biil)",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1300,7 +1337,7 @@
         name: "Maxamed Xaaji Shiikhey Abati",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1308,7 +1345,7 @@
         name: "Maxamuud Axmed Xasan (Dalab)",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1316,7 +1353,7 @@
         name: "Maxamuud Cali Cumar",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1324,7 +1361,7 @@
         name: "Muriidi Muumin Axmed",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1332,7 +1369,7 @@
         name: "Muumin Axmed Abubakar",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1340,7 +1377,7 @@
         name: "Muxuyadiin Xasan Maxamed",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1348,7 +1385,7 @@
         name: "Saciid Cali Cosoble",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1356,7 +1393,7 @@
         name: "Saciid Cali Maxamuud",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1364,7 +1401,7 @@
         name: "Sh Axmed Cali Cismaan",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1372,7 +1409,7 @@
         name: "Sh Cabdi limaan Cumar",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1380,7 +1417,7 @@
         name: "Xasan Maxamed Axmed (Suni)",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1388,7 +1425,7 @@
         name: "Xassan Sh. Maxamed Farxaan",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1396,7 +1433,7 @@
         name: "Xuseen Aaden Xasan Yaasiin",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1404,7 +1441,7 @@
         name: "Xuseen Maxamuud Muuse",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1412,7 +1449,7 @@
         name: "Xusseen Maxamed Calasow",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1420,7 +1457,7 @@
         name: "Yaasiin Cabdi Xasan",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1428,7 +1465,7 @@
         name: "Yoonis Cabdiraxman Maxamud Cali",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1436,7 +1473,7 @@
         name: "Yusuf Tuurxume Jimcaale",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1444,7 +1481,7 @@
         name: "Maxamed Maxamuud Maxamed (Dr Luu)",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1452,7 +1489,7 @@
         name: "Xuseen Xasan Cali",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1460,7 +1497,7 @@
         name: "Abubakar Maxamed Suufi Maxamed",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1468,7 +1505,7 @@
         name: "Cabdiraxmaan Maxamed Xasan Ibraahim",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1476,7 +1513,7 @@
         name: "Cali Macalin Xasan Maxamuud",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1484,7 +1521,7 @@
         name: "Cabdishakuur Axmed Maxamed Maxam,ud",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1492,7 +1529,7 @@
         name: "Maxamed Aadan Cismaan Jimcaale",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1500,7 +1537,7 @@
         name: "Aweys Sheekh Cali Qaasim",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1508,7 +1545,7 @@
         name: "Cismaan Cadceed Cismaan Shuuriye",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1516,7 +1553,7 @@
         name: "Maxamed Cabdifataax Cismaan",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1524,7 +1561,7 @@
         name: "Axmed Cabdiraxmaan Wehliye Maalin",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1532,7 +1569,7 @@
         name: "Maxamed Cismaan Wehliye",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1540,7 +1577,7 @@
         name: "Cabdi Axmed Cali Geedi",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1548,7 +1585,7 @@
         name: "Maxamed Cabdi Maxamed Xuseen",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1556,7 +1593,7 @@
         name: "Maxamuud Aadan Xaashi Jimcaale",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1564,7 +1601,7 @@
         name: "Maxamed Cabdullaahi Hagar Maxamuud",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1572,7 +1609,7 @@
         name: "Xasan Aadan Ibraahim Maxamed",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1580,7 +1617,7 @@
         name: "Maxamed Yacquub Isaaq Aaden",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1588,7 +1625,7 @@
         name: "Ismaaciil Macalin Maxamuud Cali",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1596,7 +1633,7 @@
         name: "Maxamuud Maxamed Cali Cashara",
         notaryName: "MA LAHAN",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "5 August 2020"
     },
     {
@@ -1652,7 +1689,7 @@
         name: "Aadan Cilmi Maxamed",
         notaryName: "Hufane",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1660,7 +1697,7 @@
         name: "Aadan Jimcaale Maxamed",
         notaryName: "Hubiye",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1668,7 +1705,7 @@
         name: "Aaden Cabdulqaadir Yaxye",
         notaryName: "Dayax",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1676,7 +1713,7 @@
         name: "Abuubakar Maxamed Suufi Maxamed",
         notaryName: "Suufi",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1684,7 +1721,7 @@
         name: "Abuubakar Yusuf Wardheere",
         notaryName: "Wardheere",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1692,7 +1729,7 @@
         name: "Aweys Sheekh Cali Qaasim",
         notaryName: "Horyaal",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1700,7 +1737,7 @@
         name: "Axmed Cabdiraxmaan Wehliye Maalin",
         notaryName: "Wehliye",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1708,7 +1745,7 @@
         name: "Axmed Ciise Cabdullaahi",
         notaryName: "[No Notary Name Provided]",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1716,7 +1753,7 @@
         name: "Axmed Ismaaciil Barre (Madaxey)",
         notaryName: "Banaadir",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1724,7 +1761,7 @@
         name: "Axmed Sh Cali Axmed Buraale",
         notaryName: "Xaqdhowr",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1732,7 +1769,7 @@
         name: "Badrudiin Sheekh Rashiid Ibraahiim",
         notaryName: "Buraale",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1740,7 +1777,7 @@
         name: "Bashiir Maxamed Sheekh Maxamed",
         notaryName: "Xijaaz",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1748,7 +1785,7 @@
         name: "Cabdi Aaden Macalin Cabdulle",
         notaryName: "Karaama",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1756,7 +1793,7 @@
         name: "Cabdi Axmed Cali (Geedi)",
         notaryName: "Mucalim",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1764,7 +1801,7 @@
         name: "Cabdi Axmed Cali Geedi",
         notaryName: "Geedi",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1772,7 +1809,7 @@
         name: "Cabdi Cabdullaahi Abtidoon",
         notaryName: "Ummadda",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1780,7 +1817,7 @@
         name: "Cabdi Cadaawe Cali",
         notaryName: "Muqdisho Abtidoon",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1788,7 +1825,7 @@
         name: "Cabdi Yuusuf Xasan Maahir",
         notaryName: "Maahir",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1796,7 +1833,7 @@
         name: "Cabdifitaax Cumar Maxamed",
         notaryName: "[No Notary Name Provided]",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1804,7 +1841,7 @@
         name: "Cabdinaasir Abuukar Xaaji Dheere",
         notaryName: "Kaatib",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1812,7 +1849,7 @@
         name: "Cabdinaasir Sh.Cali Jimcaale",
         notaryName: "Dheere",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1820,7 +1857,7 @@
         name: "Cabdirashid Cabdullaahi Maxamed",
         notaryName: "Khayre Muqdisho",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1828,7 +1865,7 @@
         name: "Cabdiraxmaan Maxamed Xasan Ibraahim",
         notaryName: "Awmuuse",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1836,7 +1873,7 @@
         name: "Cabdiraxmaan Warsame Siyaad",
         notaryName: "Qaanuuni",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1844,7 +1881,7 @@
         name: "Cabdiraxman Maxamuud Cali (Time Cade)",
         notaryName: "Banaadir Time cade",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1852,7 +1889,7 @@
         name: "Cabdirisaaq Maxamed Cabdulle (Tiikey)",
         notaryName: "Tiikey",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1860,7 +1897,7 @@
         name: "Cabdirisaaq Xasan Cilmi",
         notaryName: "Kulmiye",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1868,7 +1905,7 @@
         name: "Cabdisalaan Cabdiraxmaan Caafi Cabdulle",
         notaryName: "Caafi",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1876,7 +1913,7 @@
         name: "Cabdishakuur Axmed Maxamed Maxam,ud",
         notaryName: "Caddawe",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1884,7 +1921,7 @@
         name: "Cabdullaahi Maxamed Siyaad (Gaab)",
         notaryName: "Wadani",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1892,7 +1929,7 @@
         name: "Cabdulqaadir Cabdullaahi Maxamed",
         notaryName: "Alnuur",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1900,7 +1937,7 @@
         name: "Cabdulqaadir Cumar Kaatib",
         notaryName: "Kaatib",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1908,7 +1945,7 @@
         name: "Cabdulwaaxid Maxamed Xuseen (Wakiil)",
         notaryName: "[No Notary Name Provided]",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1916,7 +1953,7 @@
         name: "Cabdulwahaab Nuur Mahdi",
         notaryName: "Cilmi",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1924,7 +1961,7 @@
         name: "Cali Macalin Xasan Maxamuud",
         notaryName: "Kulan",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1932,7 +1969,7 @@
         name: "Cali Maxamuud Jimcaale",
         notaryName: "Kalsan",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1940,7 +1977,7 @@
         name: "Cali Sheekh Cabdi",
         notaryName: "Ilkadahab",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1948,7 +1985,7 @@
         name: "Cali Xaashi Cali Ugaas",
         notaryName: "Horseed",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1956,7 +1993,7 @@
         name: "Cali Xasan Faarax",
         notaryName: "Xakiim",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1964,7 +2001,7 @@
         name: "Cali Yuusuf Xuseen",
         notaryName: "Xamar-Xamarweyne",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1972,7 +2009,7 @@
         name: "Ciise Cabdirahman Maxamed",
         notaryName: "Fiqi",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1980,7 +2017,7 @@
         name: "Cismaan Cadceed Cismaan Shuuriye",
         notaryName: "Shuuriye",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1988,7 +2025,7 @@
         name: "Cismaan Maxamed Ismaaciil",
         notaryName: "Osmaan",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -1996,7 +2033,7 @@
         name: "Cumar Maxamed Faarax (Gomed)",
         notaryName: "Faaruuq",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2004,7 +2041,7 @@
         name: "Daahir Cabdi Maxamuud (Boolis)",
         notaryName: "Xamar-Dharkeynley",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2012,7 +2049,7 @@
         name: "Daahir Maxamuud Maxamed",
         notaryName: "Xamar-Suuqxoolaha",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2020,7 +2057,7 @@
         name: "Daahir Xaaji Xasan Axmed",
         notaryName: "Waano",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2028,7 +2065,7 @@
         name: "Deeq Cabdi Rayid",
         notaryName: "Hilaac",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2036,7 +2073,7 @@
         name: "Ibraahim Maxamed Axmed",
         notaryName: "Garsoor",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2044,7 +2081,7 @@
         name: "Ibrahim Xasan Sheekh Xuseen",
         notaryName: "Towfiiq",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2052,7 +2089,7 @@
         name: "Idris Maxamed Cusmaan",
         notaryName: "Waabari",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2060,7 +2097,7 @@
         name: "Ismaaciil Macalin Maxamuud Cali",
         notaryName: "Salaama",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2068,7 +2105,7 @@
         name: "Ismaacil Maxamed Cabdullaahi",
         notaryName: "Shahaad",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2076,7 +2113,7 @@
         name: "Khalif Sh Ibraahim Dhiblaawe",
         notaryName: "Dhiblaawe",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2084,7 +2121,7 @@
         name: "Maxamed Diiriye Sabriye",
         notaryName: "Sabriye",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2092,7 +2129,7 @@
         name: "Maxamed Sh. Axmed Khaliif",
         notaryName: "Khalifa",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2100,7 +2137,7 @@
         name: "Maxamed Xuseen Xasan",
         notaryName: "Talawadaag - Kaaraan",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2108,7 +2145,7 @@
         name: "Maxamed Cabdi Maxamed Xuseen",
         notaryName: "Gurmad",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2116,7 +2153,7 @@
         name: "Maxamed Cabdifataax Cismaan",
         notaryName: "Muutaale",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2124,7 +2161,7 @@
         name: "Maxamed Cabdullaahi Hagar Maxamuud",
         notaryName: "Balli",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2132,7 +2169,7 @@
         name: "Maxamed Cabdulqaadir Sh.Xasan (Amiin)",
         notaryName: "Amiin",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2140,7 +2177,7 @@
         name: "Maxamed Cali Nuur (Socdaal)",
         notaryName: "Socdaal Muqdisho",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2148,7 +2185,7 @@
         name: "Maxamed Cismaan Wehliye",
         notaryName: "Salaam Muqdisho",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2156,7 +2193,7 @@
         name: "Maxamed Cumar Ibraahim",
         notaryName: "Rasmi Muqdsiho",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2164,7 +2201,7 @@
         name: "Maxamed Ibraahim Maxamed Cali",
         notaryName: "Sh Ibraahim",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2172,7 +2209,7 @@
         name: "Maxamed Maxamuud Maxamed (Dr Luu)",
         notaryName: "Irmaan",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2180,7 +2217,7 @@
         name: "Maxamed Sh Axmed Xasan",
         notaryName: "Hilaal",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2188,7 +2225,7 @@
         name: "Maxamed Xaaji Jimcaale (Biil)",
         notaryName: "Dr Biil",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2196,7 +2233,7 @@
         name: "Maxamed Xaaji Shiikhey Abati",
         notaryName: "Alfaqi",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2204,7 +2241,7 @@
         name: "Maxamed Yacquub Isaaq Aaden",
         notaryName: "Xamarcade",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2212,7 +2249,7 @@
         name: "Maxamuud Maxamed Cali Cashara",
         notaryName: "Cashara",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2220,7 +2257,7 @@
         name: "Maxamuud Aadan Xaashi Jimcaale",
         notaryName: "Habarwaa",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2228,7 +2265,7 @@
         name: "Maxamuud Cali Cumar",
         notaryName: "Biyey",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2236,7 +2273,7 @@
         name: "Muriidi Muumin Axmed",
         notaryName: "Rasmi Xamar",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2244,7 +2281,7 @@
         name: "Muumin Axmed Abubakar",
         notaryName: "Rasmi Xamar",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2252,7 +2289,7 @@
         name: "Muxuyadiin Xasan Maxamed",
         notaryName: "Azhari",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2260,7 +2297,7 @@
         name: "Saciid Cali Cosoble",
         notaryName: "Muqdisho",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2268,7 +2305,7 @@
         name: "Saciid Cali Maxamuud",
         notaryName: "Taakulo",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2276,7 +2313,7 @@
         name: "Sh Axmed Cali Cismaan",
         notaryName: "Talawadaag-Waabari",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2284,7 +2321,7 @@
         name: "Sh Cabdi Iimaan Cumar",
         notaryName: "Siisi",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2292,7 +2329,7 @@
         name: "Xasan Aadan Ibraahim Maxamed",
         notaryName: "Bilaal",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2300,7 +2337,7 @@
         name: "Xasan Maxamed Axmed (Suni)",
         notaryName: "Suni",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2308,7 +2345,7 @@
         name: "Xassan Sh. Maxamed Farxaan",
         notaryName: "Muqdisho- Studio legale",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2316,7 +2353,7 @@
         name: "Xuseen Aaden Xasan Yaasiin",
         notaryName: "Xeyder",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2324,7 +2361,7 @@
         name: "Xuseen Maxamuud Muuse",
         notaryName: "Ifka",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2332,7 +2369,7 @@
         name: "Xusseen Maxamed Calasow",
         notaryName: "Tawakal",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2340,7 +2377,7 @@
         name: "Yaasiin Cabdi Xasan",
         notaryName: "Rogaal",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2348,7 +2385,7 @@
         name: "Yusuf Tuurxume Jimcaale",
         notaryName: "Tuurxume",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2356,7 +2393,7 @@
         name: "Xasan Cusmaan Wehliye",
         notaryName: "Xamari",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2364,7 +2401,7 @@
         name: "Cali Xaaji Maxamed Warsame",
         notaryName: "Warsame",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2372,7 +2409,7 @@
         name: "Cabdiraxmaan Xuseen Maxamuud Maxamed",
         notaryName: "Timaweyne",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2380,7 +2417,7 @@
         name: "Maxamed Cabdullahi Maxamed Siyaad",
         notaryName: "Tayo",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2388,7 +2425,7 @@
         name: "Cali Xasan Cali Nuur",
         notaryName: "Talasan",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2396,7 +2433,7 @@
         name: "Xaliimo Axmed Faarax Kaariye",
         notaryName: "Taajir Mulki",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2404,7 +2441,7 @@
         name: "Cumar Cabdi Cadaawe",
         notaryName: "Suldaan",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2412,7 +2449,7 @@
         name: "Cabdiraxim Ibraahim Macalin",
         notaryName: "Sadsoor",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2420,7 +2457,7 @@
         name: "Ismaaciil Maxamed Cumar",
         notaryName: "Saalixi",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2428,7 +2465,7 @@
         name: "Zakariye Axmed Xasan",
         notaryName: "Rodol",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2436,7 +2473,7 @@
         name: "Ibraahim Daahir Xuseen",
         notaryName: "Rayaan",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2444,7 +2481,7 @@
         name: "Qaasim Maxamed Ibrahim Barrow",
         notaryName: "Qaasimi",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2452,7 +2489,7 @@
         name: "Xaydar Cali Odowaa Cosoble",
         notaryName: "Odawaa",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2460,7 +2497,7 @@
         name: "Feysal Maxamed Maxamuud",
         notaryName: "Mustaqbal",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2468,7 +2505,7 @@
         name: "Salaad Maxamed Jaamac",
         notaryName: "Macruuf",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2476,7 +2513,7 @@
         name: "Xuseen Maxamed Kadiye",
         notaryName: "Kadiye",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2484,7 +2521,7 @@
         name: "Ismaaciil Cali Axmed Mahad-Alle",
         notaryName: "Hubaal",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2492,7 +2529,7 @@
         name: "Cartan Cabdisalaam Calasow Dabey",
         notaryName: "Gadroon",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2500,7 +2537,7 @@
         name: "Maxamed Nuur Maxamuud",
         notaryName: "Diiwaan",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2508,7 +2545,7 @@
         name: "Xasan Dhuxulow Xasan Raage",
         notaryName: "Dhuxulow",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2516,7 +2553,7 @@
         name: "Maxamed Ciise Dhowrane",
         notaryName: "Dhowrane",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2524,7 +2561,7 @@
         name: "Abuubakar Xuseen Maxamed",
         notaryName: "Dhagajuun",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2532,7 +2569,7 @@
         name: "Cabaas Cabdullaahi Bootaan Sahal",
         notaryName: "Bootaan",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2540,7 +2577,7 @@
         name: "Muqtaar Macalim Cilmi Maxamed",
         notaryName: "Bayaan",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2548,7 +2585,7 @@
         name: "Maxamed Nuur Maxmed Cali",
         notaryName: "Baxnaan",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2556,7 +2593,7 @@
         name: "Xasan Maxamed Cali Barrow",
         notaryName: "Barrow",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2564,7 +2601,7 @@
         name: "Cabdiraxmaan Daahir Cabdi Booliis",
         notaryName: "Barako",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2572,7 +2609,7 @@
         name: "Abuubakar Muumin Axmed",
         notaryName: "Baana",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2580,7 +2617,7 @@
         name: "Aweys Ibraahim Xuseen",
         notaryName: "Aweis",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2588,7 +2625,7 @@
         name: "Cabdullaahi Cabdi Xirsi Faarax",
         notaryName: "Asal",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2596,7 +2633,7 @@
         name: "Cabdiraxman Sheekh Maxamed Xasan",
         notaryName: "Alxarameyn",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2604,7 +2641,7 @@
         name: "Cismaan Cabdulle Cabdi Cisman",
         notaryName: "Al-Taqwa",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2612,7 +2649,7 @@
         name: "Cabdiwali Xasan Culusow Cali",
         notaryName: "Alfaraj",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2620,7 +2657,7 @@
         name: "Cabdiqaadir Xasan Faarax",
         notaryName: "Al Cadaala",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2628,7 +2665,7 @@
         name: "Bashiir Macalim Maxamed Ibraahim",
         notaryName: "Afrax",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2636,7 +2673,7 @@
         name: "Cabdikariim Xasan Nuur Maxamed",
         notaryName: "Aflax",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2644,7 +2681,7 @@
         name: "Axmed Ciise Guutaale Aden",
         notaryName: "Qaran",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2652,7 +2689,7 @@
         name: "Cabdifataax Axmed Cabdulle Kulan",
         notaryName: "Kaamil",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2660,7 +2697,7 @@
         name: "Cabdiqadir Sheekh Cabdiwahab Maxamed",
         notaryName: "Cabdiwahaab",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2668,7 +2705,7 @@
         name: "Cabdullaahi Xasan Wehliye",
         notaryName: "Al-faraj",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2676,7 +2713,7 @@
         name: "Cumar Cali Maxamuud Cawaale",
         notaryName: "Cali-Agoon",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2684,7 +2721,7 @@
         name: "Cusman Cumar Kaatib",
         notaryName: "Tahajid",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2692,7 +2729,7 @@
         name: "Faadumo Cusmaan Xaaji Ismaaciil",
         notaryName: "[No Notary Name Provided]",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2700,7 +2737,7 @@
         name: "Guleed Maxamud Jimcaale Cismaan",
         notaryName: "Tagsan",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2708,7 +2745,7 @@
         name: "Maxamed Cabdi Daahir Colaad",
         notaryName: "Colaad",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2716,7 +2753,7 @@
         name: "Maxamed Cabdullaahi Cusmaan Yabarow",
         notaryName: "Ducaale",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2724,7 +2761,7 @@
         name: "Nuur Cali Culusow Geedi",
         notaryName: "Culusow",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2732,7 +2769,7 @@
         name: "Shaafici Maxamed Axmed Cali",
         notaryName: "[No Notary Name Provided]",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2740,7 +2777,7 @@
         name: "Xuseen Xasan Cabdulle Cumar",
         notaryName: "Dulqaad",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2748,7 +2785,7 @@
         name: "Yaasiin Axmed Cusmaan",
         notaryName: "Salmaan",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2756,7 +2793,7 @@
         name: "Cabdullaahi Faarax Qaarey",
         notaryName: "Qaarey",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2764,7 +2801,7 @@
         name: "Yoonis Cabdiraxman Maxamud Cali",
         notaryName: "Qaarey",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2772,7 +2809,7 @@
         name: "Maxamed Cabdiraxmaan Aadan",
         notaryName: "Banaadir Danuun",
         district: "MA LAHAN",
-        region: "Gobolka Banaadir",
+        region: "Banaadir",
         issueDate: "15 August 2021"
     },
     {
@@ -2895,1454 +2932,188 @@
         region: "Gobolka Sh.Hoose-Afgooye",
         issueDate: "15 August 2021"
     },
-    {
-        id: 1129,
-        name: "Ismaaciil Macalin Maxamuud Cali",
-        notaryName: "Salaama",
-        district: "Boondheere Siinaay",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1130,
-        name: "Zakariye Axmed Xasan",
-        notaryName: "Rodol",
-        district: "Boondheere Siinaay",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1131,
-        name: "Shaafici Maxamed Axmed Cali",
-        notaryName: "Dulqaad",
-        district: "Dayniile Daaru-Salaam",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1132,
-        name: "Xaliimo Axmed Faarax Kaariye",
-        notaryName: "Taajir Mulki",
-        district: "Dharkeynlay Dabakaye Cagaar",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1133,
-        name: "Ibraahim Daahir Xuseen",
-        notaryName: "Rayaan",
-        district: "Dharkeynley Suuq liif",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1134,
-        name: "Xaydar Cali Odowaa Cosoble",
-        notaryName: "Odawaa",
-        district: "Dharkeynley Ajibka Madiina",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1135,
-        name: "Daahir Cabdi Maxamuud (Boolis)",
-        notaryName: "Xamar",
-        district: "Dharkeynley Gerash.M Nuur",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1136,
-        name: "Maxamed Cumar Ibraahim",
-        notaryName: "Rasmi Muqdsiho",
-        district: "Dharkeynley Macmacaanka",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1137,
-        name: "Maxamed Sh Axmed Xasan",
-        notaryName: "Hilaal",
-        district: "Dharkeynley Macmacaanka",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1138,
-        name: "Xusseen Maxamed Calasow",
-        notaryName: "Tawakal",
-        district: "Dharkeynley Saciid Rooraaye",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1139,
-        name: "Axmed Ciise Guutaale Aden",
-        notaryName: "Qaran",
-        district: "Hoden Isg. Taleex",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1140,
-        name: "Cabdulwaaxid Maxamed Xuseen (Wakiil)",
-        notaryName: "Cilmi",
-        district: "Hoden Isg. Taleex",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1141,
-        name: "Cabdiraxmaan Maxamed Xasan",
-        notaryName: "Qaanuuni",
-        district: "Hoden Isg. Taleex",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1142,
-        name: "Ibraahim Maxamed Axmed",
-        notaryName: "Garsoor",
-        district: "Hoden Lmg.Taleex",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1143,
-        name: "Axmed Sh Cali Axmed Buraale",
-        notaryName: "Buraale",
-        district: "Hoden Makka Al-Mukaramah.",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1144,
-        name: "Cabdi Axmed Cali (Geedi)",
-        notaryName: "Geedi",
-        district: "Hoden Mdx.C/qasim",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1145,
-        name: "Cali Xaaji Maxamed Warsame",
-        notaryName: "Warsame",
-        district: "Hoden Oktober Faanoole",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1146,
-        name: "Cabdiraxim Ibraahim Macalin",
-        notaryName: "Sadsoor",
-        district: "Hoden Oktober Xaawa Taako",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1147,
-        name: "Maxamed Xuseen Rooble",
-        notaryName: "Dr.Rooble",
-        district: "Hoden Zoobe",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1148,
-        name: "Guuleed Maxamud Jimcaale Cismaan",
-        notaryName: "Biil",
-        district: "Hoden Zoone F. KM15",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1149,
-        name: "Ciise Cabdirahman Maxamed",
-        notaryName: "Fiqi",
-        district: "Hoden Zoone F. KM15",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1150,
-        name: "Cabdikariim Xasan Nuur Maxamed",
-        notaryName: "Aflax",
-        district: "Howlwaaag Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1151,
-        name: "Cabdiraxmaan Xasan Cumar",
-        notaryName: "Soomaaliya",
-        district: "Howlwadaag Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1152,
-        name: "Bashiir Macalim Maxamed Ibraahim",
-        notaryName: "Afrax",
-        district: "Howlwadaag Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1153,
-        name: "Cabdullaahi Cabdi Xirsi Faarax",
-        notaryName: "Asal",
-        district: "Howlwadaag Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1154,
-        name: "Cabdirisaaq Xasan Cilmi",
-        notaryName: "Kulmiye",
-        district: "Howlwadaag Baar Ubax",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1155,
-        name: "Cali Yuusuf Xuseen",
-        notaryName: "Xamar",
-        district: "Howlwadaag Shiirkole",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1156,
-        name: "Aadan Jimcaale Maxamed",
-        notaryName: "Dayax",
-        district: "Howlwadaag Jid. Sodonka Daallo",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1157,
-        name: "Cabdi Axmed Cali Geedi",
-        notaryName: "Ummadda",
-        district: "Howlwadaag Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1158,
-        name: "Aadan Cali Cadow",
-        notaryName: "Hiraabe",
-        district: "Howlwadaag Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1159,
-        name: "Aadan Cilmi Maxamed (Macalin Aadan)",
-        notaryName: "Hubiye",
-        district: "Howlwadaag Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1160,
-        name: "Abuubakar Xuseen Maxamed",
-        notaryName: "Dhagajuun",
-        district: "Howlwadaag Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1161,
-        name: "Axmed Cabdiraxmaan Wehliye Maalin",
-        notaryName: "Wehliye",
-        district: "Howlwadaag Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1162,
-        name: "Axmed Ciise Cabdullaahi",
-        notaryName: "Banaadir",
-        district: "Howlwadaag Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1163,
-        name: "Axmed Ismaaciil Barre (Madaxey)",
-        notaryName: "Xaqdhowr",
-        district: "Howlwadaag Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1164,
-        name: "Cabdiqaadir Xasan Faarax",
-        notaryName: "Al Cadaala",
-        district: "Howlwadaag Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1165,
-        name: "Cabdiraxmaan Warsame Siyaad",
-        notaryName: "Banaadir",
-        district: "Howlwadaag Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1166,
-        name: "Cabdirisaaq Maxamed Cabdulle (Tiikey)",
-        notaryName: "Tiikey",
-        district: "Howlwadaag Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1167,
-        name: "Cabdishakuur Axmed Maxamed Maxamuud",
-        notaryName: "Caddawe",
-        district: "Howlwadaag Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1168,
-        name: "Cabdullaahi Maxamed Siyaad (Gaab)",
-        notaryName: "Wadani",
-        district: "Howlwadaag Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1169,
-        name: "Cabdulqaadir Ibraahim Cali",
-        notaryName: "Caalami",
-        district: "Howlwadaag Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1170,
-        name: "Cali Xaashi Cali Ugaas",
-        notaryName: "Horseed",
-        district: "Howlwadaag Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1171,
-        name: "Cali Xasan Faarax",
-        notaryName: "Xakiim",
-        district: "Howlwadaag Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1172,
-        name: "Cartan Cabdisalaam Calasow Dabey",
-        notaryName: "Gardoon",
-        district: "Howlwadaag Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1173,
-        name: "Cismaan Cabdulle Cabdi Cisman (Jeelle)",
-        notaryName: "Al-Taqwa",
-        district: "Howlwadaag Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1174,
-        name: "Ismaaciil Cali Axmed Mahad-Alle",
-        notaryName: "Hubaal",
-        district: "Howlwadaag Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1175,
-        name: "Ismaacil Maxamed Cabdullaahi",
-        notaryName: "Shahaad",
-        district: "Howlwadaag Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1176,
-        name: "Khalif Sh Ibraahim Dhiblaawe",
-        notaryName: "Dhiblaawe",
-        district: "Howlwadaag Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1177,
-        name: "Maxamed Sh. Axmed Khaliif",
-        notaryName: "Khalifa",
-        district: "Howlwadaag Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1178,
-        name: "Maxamed Cabdullaahi Cusmaan Yabarow",
-        notaryName: "Ducaale",
-        district: "Howlwadaag Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1179,
-        name: "Maxamed Cabdullahi Maxamed Siyaad",
-        notaryName: "Tayo",
-        district: "Howlwadaag Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1180,
-        name: "Maxamed Cabdulqaadir Sh.Xasan (Amiin)",
-        notaryName: "Amiin",
-        district: "Howlwadaag Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1181,
-        name: "Maxamed Cali Nuur (Socdaal)",
-        notaryName: "Muqdisho",
-        district: "Howlwadaag Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1182,
-        name: "Maxamed Ciise Dhowrane",
-        notaryName: "Dhowrane",
-        district: "Howlwadaag Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1183,
-        name: "Maxamed Yacquub Isaaq Aaden",
-        notaryName: "Xamarcade",
-        district: "Howlwadaag Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1184,
-        name: "Saciid Cali Cosoble",
-        notaryName: "Muqdisho",
-        district: "Howlwadaag Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1185,
-        name: "Salaad Maxamed Jaamac",
-        notaryName: "Macruuf",
-        district: "Howlwadaag Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1186,
-        name: "Yusuf Tuurxume Jimcaale",
-        notaryName: "Tuurxume",
-        district: "Howlwadaag Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1187,
-        name: "Maxamed Aaden Sheekh Nuur",
-        notaryName: "Qooje",
-        district: "Howlwadaag Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1188,
-        name: "Cabdi Cabdullaahi Abtidoon",
-        notaryName: "Muqdisho",
-        district: "Howlwadaaga Isg. Baar Ubax",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1189,
-        name: "Cabdirashiid Maxamuud Axmed",
-        notaryName: "Hilaaf",
-        district: "Howlwadaaga Jidka Sodonka",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1190,
-        name: "Muqtaar Macalim Cilmi Maxamed",
-        notaryName: "Bayaan",
-        district: "Howlwadaaga Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1191,
-        name: "Saciid Cali Maxamuud",
-        notaryName: "Taakulo",
-        district: "Howlwadaag Suuq Bakaaro",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1192,
-        name: "Xuseen Maxamuud Muuse",
-        notaryName: "If-ka",
-        district: "Kaaraan Boosteejada",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1193,
-        name: "Cabdiraxman Sheekh Maxamed Xasan",
-        notaryName: "Alxarameyn",
-        district: "Kaaraan Ex-Hotel Laf-weyn",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1194,
-        name: "Xasan Cusmaan Wehliye",
-        notaryName: "Xamari",
-        district: "Kaaraan Isg.Sanca",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1195,
-        name: "Cabdirashid Cabdullaahi Maxamed",
-        notaryName: "Aw-muuse",
-        district: "Kaaraan Sanca",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1196,
-        name: "Cabdulqaadir Cabdullaahi Maxamed",
-        notaryName: "Alnuur",
-        district: "Kaaraan Sanca",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1197,
-        name: "Maxamuud Cali Cumar",
-        notaryName: "Biyey",
-        district: "Kaaraan Sanca",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1198,
-        name: "Xasan Dhuxulow Xasan Raage",
-        notaryName: "Dhuxulow",
-        district: "Kaaraan Suuq Kaaraan",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1199,
-        name: "Cali Xasan Cali Nuur",
-        notaryName: "Talasan",
-        district: "Kaaraan Wajeer",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1200,
-        name: "Abuubakar Maxamed Suufi Maxamed",
-        notaryName: "Bisle",
-        district: "Kaaraan Xaliima Hiite",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1201,
-        name: "Maxamuud Maxamed Cali Cashara",
-        notaryName: "Cashara",
-        district: "Kaxda Abaadir",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1202,
-        name: "Maxamed Sh C/raxman Abuubakar",
-        notaryName: "Badri",
-        district: "Kaxda Abaadir Farjano",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1203,
-        name: "Cabaas Cabdullaahi Bootaan Sahal",
-        notaryName: "Bootaan",
-        district: "Kaxda Gnrl.Liiqliiqato",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1204,
-        name: "Maxamuud Aadan Xaashi Jimcaale",
-        notaryName: "Habarwaa",
-        district: "Kaxda Shimbiroole",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1205,
-        name: "Xasan Aadan Ibraahim Maxamed",
-        notaryName: "Bilaal",
-        district: "Kaxda Shinbroole",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1206,
-        name: "Xuseen Xasan Cabdulle Cumar",
-        notaryName: "Salmaan",
-        district: "Shibis",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1207,
-        name: "Maxamed Nuur Maxamuud",
-        notaryName: "Diiwaan",
-        district: "Waabari Hantiwadaag",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1208,
-        name: "Maxamed Diiriye Sabriye",
-        notaryName: "Sabriye",
-        district: "Waabari Hor. Hotel Mubarak",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1209,
-        name: "Sh Axmed Cali Cismaan",
-        notaryName: "Talawadaag",
-        district: "Waabari Isg. Dabka",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1210,
-        name: "Maxamed Cabdi Daahir Colaad",
-        notaryName: "Colaad",
-        district: "Waabari KM4",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1211,
-        name: "Xuseen Maxamed Kadiye",
-        notaryName: "Kadiye",
-        district: "Waabari KM4",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1212,
-        name: "Ismaaciil Maxamed Cumar",
-        notaryName: "Saalixi",
-        district: "Waabari Maaj",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1213,
-        name: "Idris Maxamed Cusmaan",
-        notaryName: "Waabari",
-        district: "Waabari Makka Al-Mukarama",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1214,
-        name: "Faadumo Cusmaan Xaaji Ismaaciil",
-        notaryName: "Tagsan",
-        district: "Waabari Shaqaalaha",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1215,
-        name: "Aweys Sheekh Cali Qaasim",
-        notaryName: "Horyaal",
-        district: "Waabari Tree-piano",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1216,
-        name: "Cismaan Maxamed Ismaaciil",
-        notaryName: "Osmaan",
-        district: "Waabari Tree-piano",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1217,
-        name: "Aaden Cabdulqaadir Yaxye",
-        notaryName: "Hufane",
-        district: "Waabari Tree-piano",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1218,
-        name: "Badrudiin Sheekh Rashiid Ibraahiim",
-        notaryName: "Xijaaz",
-        district: "Waabari Tree-piano",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1219,
-        name: "Bashiir Maxamed Sheekh Maxamed",
-        notaryName: "Karaama",
-        district: "Waabari Tree-Piano",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1220,
-        name: "Cali Sheekh Cabdi",
-        notaryName: "Ilkadahab",
-        district: "Waabari Tree-Piano",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1221,
-        name: "Yaasiin Cabdi Xasan",
-        notaryName: "Rogaal",
-        district: "Waabari Tree-piano",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1222,
-        name: "Cabdifitaax Cumar Maxamed",
-        notaryName: "Kaatib",
-        district: "Waabari Xaaji Baasto",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1223,
-        name: "Cabdulqaadir Cumar Kaatib",
-        notaryName: "Kaatib",
-        district: "Waabari Xaaji Baasto",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1224,
-        name: "Cusman Cumar Kaatib",
-        notaryName: "Tahajid",
-        district: "Waabari Xaaji Baasto",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1225,
-        name: "Cabdullaahi Faarax Qaarey",
-        notaryName: "Qaarey",
-        district: "Wadajir KM4",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1226,
-        name: "Cumar Maxamed Faarax (Gomed)",
-        notaryName: "Faaruuq",
-        district: "Wadajir KM4",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1227,
-        name: "Cabdiraxman Maxamuud Cali (Time Cade)",
-        notaryName: "Banaadir Time Cade",
-        district: "Wadajir KM4",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1228,
-        name: "Yoonis Cabdiraxman Maxamud Cali",
-        notaryName: "Banaadir Danuun",
-        district: "Wadajir KM4",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1229,
-        name: "Cabdiraxmaan Daahir Cabdi Booliis",
-        notaryName: "Barako",
-        district: "Wadajir Korontada",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1230,
-        name: "Cabdi Aaden Macalin Cabdulle",
-        notaryName: "Mucallim",
-        district: "Warta-Nabada Jid. Mareexan",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1231,
-        name: "Xuseen Aaden Xasan Yaasiin",
-        notaryName: "Xaydar",
-        district: "Warta-Nabada Labbo Dhagex",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1232,
-        name: "Cabdinaasir Abuukar Xaaji Dheere",
-        notaryName: "Dheere",
-        district: "X/Weyne Ex-Shanema Super",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1233,
-        name: "Abuubakar Muumin Axmed",
-        notaryName: "Baana",
-        district: "X/Weyne Kacaan",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1234,
-        name: "Maxamed Maxamuud Maxamed (Dr Luu)",
-        notaryName: "Irmaan",
-        district: "X/Weyne Kacaan Uunlaaye",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1235,
-        name: "Muumin Axmed Abubakar",
-        notaryName: "Rasmi Xamar",
-        district: "X/Weyne Kacaan Uunlaaye",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1236,
-        name: "Cabdinaasir Sh.Cali Jimcaale",
-        notaryName: "Kheyre",
-        district: "X/Weyne Via Roma",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1237,
-        name: "Cabdiqadir Sheekh Cabdiwahab Maxamed",
-        notaryName: "Cabdiwahaab",
-        district: "X/Weyne Via Roma",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1238,
-        name: "Cabdulwahaab Nuur Mahdi",
-        notaryName: "Kulan",
-        district: "X/Weyne Via Roma",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1239,
-        name: "Maxamed Xaaji Shiikhey Abati",
-        notaryName: "Alfaqi",
-        district: "X/Weyne Via Roma",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1240,
-        name: "Yaasiin Axmed Cusmaan",
-        notaryName: "Al-Aamin",
-        district: "X/Weyne Via Roma",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1241,
-        name: "Muriidi Muumin Axmed",
-        notaryName: "Rasmi Xamar",
-        district: "X/Weyne Kacaan Uunlaaye",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1242,
-        name: "Cabdullaahi Xasan Wehliye",
-        notaryName: "Qalam",
-        district: "Yaaqshid Daaru-Salaam",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1243,
-        name: "Maxamed Ibraahim Maxamed Cali",
-        notaryName: "Muqdisho",
-        district: "Yaaqshid Suuq Bacaad",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1244,
-        name: "Xassan Sh. Maxamed Farxaan",
-        notaryName: "Muqdisho-Studio legale",
-        district: "Yaaqshid 4 Tarjiino",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1245,
-        name: "Cabdifataax Axmed Cabdulle Kulan",
-        notaryName: "Kaamil",
-        district: "Yaaqshid Daaru-Salaam",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1246,
-        name: "Cabdisalaan Cabdiraxmaan Caafi Cabdulle",
-        notaryName: "Caafi",
-        district: "Yaaqshid Daaru-Salaam",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1247,
-        name: "Cumar Cabdi Cadaawe",
-        notaryName: "Suldaan",
-        district: "Yaaqshid Daaru-Salaam",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1248,
-        name: "Feysal Maxamed Maxamuud",
-        notaryName: "Mustaqbal",
-        district: "Yaaqshid Daaru-Salaam",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1249,
-        name: "Maxamed Cabdi Maxamed Xuseen",
-        notaryName: "Gurmad",
-        district: "Yaaqshid Daaru-Salaam",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1250,
-        name: "Xasan Maxamed Axmed (Sunni)",
-        notaryName: "Sunni",
-        district: "Yaaqshid Daaru-Salaam",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1251,
-        name: "Daahir Maxamuud Maxamed",
-        notaryName: "Xamar",
-        district: "Yaaqshid Ex-Control Balcad",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1252,
-        name: "Abuubakar Yusuf Wardheere",
-        notaryName: "Wardheere",
-        district: "Yaaqshid Ex-Suq. Xoolaha",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1253,
-        name: "Cismaan Cadceed Cismaan Shuuriye",
-        notaryName: "Shuuriye",
-        district: "Yaaqshid Ex-Suuq Xoolaha",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1254,
-        name: "Maxamed Nuur Maxmed Cali",
-        notaryName: "Baxnaan",
-        district: "Yaaqshid Horseed",
-        region: "Banaadir",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1255,
-        name: "Xasan Maxamed Cali Barrow",
-        notaryName: "Barrow",
-        district: "Yaaqshid Horseed",
-        region: "Sh.Hoose",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1256,
-        name: "Nuur Cali Culusow Geedi",
-        notaryName: "Culusow",
-        district: "Yaaqshid Siinaay",
-        region: "Sh.Hoose",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1257,
-        name: "Maxamed Cismaan Wehliye",
-        notaryName: "Salaam Muqdisho",
-        district: "Yaaqshid Suuq Bacaad",
-        region: "Sh. Hoose",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1258,
-        name: "Cabdi Cadaawe Cali",
-        notaryName: "Ex-Banaadir",
-        district: "Yaaqshid Suuq Bacaad",
-        region: "Sh.Hoose",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1259,
-        name: "Cabdi Yuusuf Xasan Maahir",
-        notaryName: "Maahir",
-        district: "Yaaqshid Suuq Bacaad",
-        region: "Sh.Hoose",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1260,
-        name: "Cabdiraxmaan Xuseen Maxamuud",
-        notaryName: "Timo-weyne",
-        district: "Yaaqshid Suuq Bacaad",
-        region: "Sh.Hoose",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1261,
-        name: "Cabdiwali Xasan Culusow Cali",
-        notaryName: "Al-faraj",
-        district: "Yaaqshid Suuq Bacaad",
-        region: "Sh.Hoose",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1262,
-        name: "Cali Macalin Xasan Maxamuud",
-        notaryName: "Kalsan",
-        district: "Yaaqshid Suuq Bacaad",
-        region: "Sh.Hoose",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1263,
-        name: "Daahir Xaaji Xasan Axmed",
-        notaryName: "Waano",
-        district: "Yaaqshid Suuq Bacaad",
-        region: "Sh.Hoose",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1264,
-        name: "Maxamed Xuseen Xasan",
-        notaryName: "Talawadaag",
-        district: "Yaaqshid Suuq Bacaad",
-        region: "Sh.Hoose",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1265,
-        name: "Maxamed Cabdullaahi Hagar Maxamuud",
-        notaryName: "Balli",
-        district: "Yaaqshid Suuq Bacaad",
-        region: "Sh.Hoose",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1266,
-        name: "Qaasim Maxamed Ibrahim Barrow",
-        notaryName: "Qaasimmi",
-        district: "Yaaqshid Suuq Bacaad",
-        region: "Sh. Hoose",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1267,
-        name: "Aweys Ibraahim Xuseen",
-        notaryName: "Aweis",
-        district: "Yaaqshid Towfiiq",
-        region: "Sh. Hoose",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1268,
-        name: "Ibrahim Xasan Sheekh Xuseen",
-        notaryName: "Towfiiq",
-        district: "Yaaqshid Towfiiq",
-        region: "Sh. Hoose",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1269,
-        name: "Muxuyadiin Xasan Maxamed",
-        notaryName: "Azhari",
-        district: "Yaaqshid Towfiiq",
-        region: "Baay",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1270,
-        name: "Abuubakar Jeylaani Sh. Abuukar (Wakiil)",
-        notaryName: "Al-Falax",
-        district: "Afgooye Ceelasha",
-        region: "Sh.Hoose",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1271,
-        name: "Axmed Xasan Shidane",
-        notaryName: "Daaru Salaam",
-        district: "Afgooye Ceelasha",
-        region: "Sh. Hoose",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1272,
-        name: "Cabaas Cabdiraxmaan Maxamuud",
-        notaryName: "Banadir Al-Cabasiyah",
-        district: "Afgooye Ceelasha",
-        region: "Sh.Hoose",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1273,
-        name: "Cabdiraxmaan Axmed Shire Guuleed",
-        notaryName: "Dhiblaawe",
-        district: "Afgooye Ceelasha",
-        region: "Sh.Hoose",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1274,
-        name: "Cabdirisaaq Xasan Xuseen",
-        notaryName: "Shaaciye",
-        district: "Afgooye Ceelasha",
-        region: "Sh.Hoose",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1275,
-        name: "Cabdishakuur Xasan Cilmi",
-        notaryName: "Furqaan",
-        district: "Afgooye Ceelasha",
-        region: "Sh.Hoose",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1276,
-        name: "Cabdixakiim Cabdiqaadir Muudey",
-        notaryName: "Zoobe",
-        district: "Afgooye Ceelasha",
-        region: "Sh. Hoose",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1277,
-        name: "Cabdullaahi Maxamed Muuse",
-        notaryName: "Ogaal",
-        district: "Afgooye Ceelasha",
-        region: "Sh.Hoose",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1278,
-        name: "Cali Maxamuud Jimcaale",
-        notaryName: "Cali Biil",
-        district: "Afgooye Ceelasha",
-        region: "Sh.Hoose",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1279,
-        name: "Cumar Cali Maxamuud Cawaale",
-        notaryName: "CaliAgoon-",
-        district: "Afgooye Ceelasha",
-        region: "Hiiraan",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1280,
-        name: "Feysal Cabdirashiid Axmed",
-        notaryName: "Damal",
-        district: "Ceelasha Afgooye",
-        region: "Baay",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1281,
-        name: "Haashim Maxamed Yusuf (Kabaqori)",
-        notaryName: "Kabaqori",
-        district: "Afgooye Ceelasha",
-        region: "Baay",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1282,
-        name: "Liibaan Jimcaale Ibraahim (Islow)",
-        notaryName: "Liibaan",
-        district: "Afgooye Ceelasha",
-        region: "Baay",
-        issueDate: "30 JANUARY 2022"
-    },
-       {
-        id: 1283,
-        name: "Maxamed Cabdi Axmed (Kalajaban)",
-        notaryName: "Hiigsi",
-        district: "Afgooye Ceelasha",
-        region: "Baay",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1284,
-        name: "Maxamed Cabdifataax Cismaan",
-        notaryName: "Baydhabo",
-        district: "Dhuusamareeb",
-        region: "Hiiraan",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1285,
-        name: "Maxamed Cali Maxamuud Xeyle",
-        notaryName: "Muutaale",
-        district: "Afgooye Ceelasha",
-        region: "Galgaduud",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1286,
-        name: "Maxamed M.Maxamuud Cumar (Madoobe)",
-        notaryName: "Lafoole Gacaliye",
-        district: "Afgooye Ceelasha",
-        region: "Galgaduud",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1287,
-        name: "Maxamed Mukhtaar Cabdullaahi",
-        notaryName: "Mukhtaar",
-        district: "Afgooye Ceelasha",
-        region: "Galgaduud",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1288,
-        name: "Maxamed Xaaji Jimcaale (Biil)",
-        notaryName: "Dr Biil",
-        district: "Afgooye Ceelasha",
-        region: "Galgaduud",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1289,
-        name: "Najiib Xasan Cumar Maxamed",
-        notaryName: "Shabeel",
-        district: "Afgooye Ceelasha",
-        region: "Galgaduud",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1290,
-        name: "Xasan Warsame Cali",
-        notaryName: "Suuley",
-        district: "Afgooye Ceelasha",
-        region: "Mudug Glg",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1291,
-        name: "Liibaan Cismaan Aaden Axmed",
-        notaryName: "Bader",
-        district: "Afgooye Ceelasha",
-        region: "Mudug Pld",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1292,
-        name: "Maxamed Maxamuud Ismaaciil",
-        notaryName: "Karaama",
-        district: "Afgooye Ceelasha",
-        region: "Nugaal",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1293,
-        name: "Liibaan Cabdullaahi Muumin",
-        notaryName: "Liibaan",
-        district: "Afgooye Ceelasha",
-        region: "Jub.Hoose",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1294,
-        name: "Maxamed Cusmaan Ibraahim",
-        notaryName: "Caddaala",
-        district: "Baladweyne",
-        region: "Jub.Hoose",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1295,
-        name: "Aadan Ibraahim Buule",
-        notaryName: "Koonfur Galbeed",
-        district: "Baydhabo",
-        region: "Baay",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1296,
-        name: "Khadiijo Axmed Muudey",
-        notaryName: "Muudey",
-        district: "Baydhabo",
-        region: "Degmadda",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1297,
-        name: "Maxamed Cabdiraxmaan Aadan",
-        notaryName: "Daacad",
-        district: "Baydhabo",
-        region: "Dayniile Aargadda Raadayrka",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1298,
-        name: "Xuseen Isgoowe Xuseen (Xaqsoor)",
-        notaryName: "Xaqsoor",
-        district: "Baydhabo",
-        region: "Howlwadaag Suuq Bakaaro",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1299,
-        name: "Xasan Maxamed Xalane",
-        notaryName: "Buuloburta",
-        district: "Buuloburta",
-        region: "Howlwadaag Suuq Bakaaro",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1300,
-        name: "Cabdigargaar Axmed Xaashi",
-        notaryName: "Gargaar",
-        district: "Cabudwaaq",
-        region: "Xamarweyne Via Roma",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1301,
-        name: "Cabdinaasir Maxamed Xasan",
-        notaryName: "Al-hudaa",
-        district: "Cabudwaaq",
-        region: "Xamaweyne Via Rooma",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1302,
-        name: "Xasan Cabdi Tahliil",
-        notaryName: "Kaah",
-        district: "Cabudwaaq",
-        region: "Xamarweyne Via Roma",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1303,
-        name: "Daahir Xasan Faarax",
-        notaryName: "Januune",
-        district: "Cabudwaaq",
-        region: "Yaaqshid Suuq Bacaad",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1304,
-        name: "Bashiir Xuseen Maxamed",
-        notaryName: "Hanaano",
-        district: "Dhuusamareeb",
-        region: "Warta-Nabadda",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1305,
-        name: "Cabdullaahi Cali Maxamed",
-        notaryName: "Towfiiq",
-        district: "Gaalgacyo",
-        region: "Kaaraan Sanca",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1306,
-        name: "Yuusuf Cabdisalaam Warsame",
-        notaryName: "Geeska Afrika",
-        district: "Gaalgacyo",
-        region: "Dayniile Daaru-Salaam",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1307,
-        name: "Saciid Cabdullaahi Cabdi",
-        notaryName: "Garawe",
-        district: "Garawe",
-        region: "Yaaqshid Suuq Bacaad",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1308,
-        name: "Xabiib Maxamed Kulmiye",
-        notaryName: "Jubba",
-        district: "Kismaayo",
-        region: "Howlwadaag Suuq Bakaaro",
-        issueDate: "30 JANUARY 2022"
-    },
-    {
-        id: 1309,
-        name: "Xasan Maxamed Nuur",
-        notaryName: "Abuuraas",
-        district: "Kismaayo",
-        region: "Howlwadaag Suuq Bakaaro",
-        issueDate: "30 JANUARY 2022"
-    },
+
+    {id: 1129, name: "Ismaaciil Macalin Maxamuud Cali", notaryName: "Salaama", district: "Boondheere Siinaay", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1130, name: "Zakariye Axmed Xasan", notaryName: "Rodol", district: "Boondheere Siinaay", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1131, name: "Shaafici Maxamed Axmed Cali", notaryName: "Dulqaad", district: "Dayniile Daaru-Salaam", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1132, name: "Xaliimo Axmed Faarax Kaariye", notaryName: "Taajir Mulki", district: "Dharkeynlay Dabakaye Cagaar", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1133, name: "Ibraahim Daahir Xuseen", notaryName: "Rayaan", district: "Dharkeynley Suuq liif", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1134, name: "Xaydar Cali Odowaa Cosoble", notaryName: "Odawaa", district: "Dharkeynley Ajibka Madiina", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1135, name: "Daahir Cabdi Maxamuud (Boolis)", notaryName: "Xamar", district: "Dharkeynley Gerash.M Nuur", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1136, name: "Maxamed Cumar Ibraahim", notaryName: "Rasmi Muqdsiho", district: "Dharkeynley Macmacaanka", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1137, name: "Maxamed Sh Axmed Xasan", notaryName: "Hilaal", district: "Dharkeynley Macmacaanka", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1138, name: "Xusseen Maxamed Calasow", notaryName: "Tawakal", district: "Dharkeynley Saciid Rooraaye", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1139, name: "Axmed Ciise Guutaale Aden", notaryName: "Qaran", district: "Hoden Isg. Taleex", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1140, name: "Cabdulwaaxid Maxamed Xuseen (Wakiil)", notaryName: "Cilmi", district: "Hoden Isg. Taleex", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1141, name: "Cabdiraxmaan Maxamed Xasan", notaryName: "Qaanuuni", district: "Hoden Isg. Taleex", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1142, name: "Ibraahim Maxamed Axmed", notaryName: "Garsoor", district: "Hoden Lmg.Taleex", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1143, name: "Axmed Sh Cali Axmed Buraale", notaryName: "Buraale", district: "Hoden Makka Al-Mukaramah", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1144, name: "Cabdi Axmed Cali (Geedi)", notaryName: "Geedi", district: "Hoden Mdx.C/qasim", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1145, name: "Cali Xaaji Maxamed Warsame", notaryName: "Warsame", district: "Hoden Oktober Faanoole", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1146, name: "Cabdiraxim Ibraahim Macalin", notaryName: "Sadsoor", district: "Hoden Oktober Xaawa Taako", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1147, name: "Maxamed Xuseen Rooble", notaryName: "Dr.Rooble", district: "Hoden Zoobe", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1148, name: "Guuleed Maxamud Jimcaale Cismaan", notaryName: "Biil", district: "Hoden Zoone F. KM15", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1149, name: "Ciise Cabdirahman Maxamed", notaryName: "Fiqi", district: "Hoden Zoone F. KM15", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1150, name: "Cabdikariim Xasan Nuur Maxamed", notaryName: "Aflax", district: "Howlwaaag Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1151, name: "Cabdiraxmaan Xasan Cumar", notaryName: "Soomaaliya", district: "Howlwadaag Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1152, name: "Bashiir Macalim Maxamed Ibraahim", notaryName: "Afrax", district: "Howlwadaag Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1153, name: "Cabdullaahi Cabdi Xirsi Faarax", notaryName: "Asal", district: "Howlwadaag Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1154, name: "Cabdirisaaq Xasan Cilmi", notaryName: "Kulmiye", district: "Howlwadaag Baar Ubax", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1155, name: "Cali Yuusuf Xuseen", notaryName: "Xamar", district: "Howlwadaag Shiirkole", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1156, name: "Aadan Jimcaale Maxamed", notaryName: "Dayax", district: "Howlwadaag Jid. Sodonka Daallo", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1157, name: "Cabdi Axmed Cali Geedi", notaryName: "Ummadda", district: "Howlwadaag Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1158, name: "Aadan Cali Cadow", notaryName: "Hiraabe", district: "Howlwadaag Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1159, name: "Aadan Cilmi Maxamed (Macalin Aadan)", notaryName: "Hubiye", district: "Howlwadaag Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1160, name: "Abuubakar Xuseen Maxamed", notaryName: "Dhagajuun", district: "Howlwadaag Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1161, name: "Axmed Cabdiraxmaan Wehliye Maalin", notaryName: "Wehliye", district: "Howlwadaag Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1162, name: "Axmed Ciise Cabdullaahi", notaryName: "Banaadir", district: "Howlwadaag Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1163, name: "Axmed Ismaaciil Barre (Madaxey)", notaryName: "Xaqdhowr", district: "Howlwadaag Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1164, name: "Cabdiqaadir Xasan Faarax", notaryName: "Al Cadaala", district: "Howlwadaag Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1165, name: "Cabdiraxmaan Warsame Siyaad", notaryName: "Banaadir", district: "Howlwadaag Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1166, name: "Cabdirisaaq Maxamed Cabdulle (Tiikey)", notaryName: "Tiikey", district: "Howlwadaag Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1167, name: "Cabdishakuur Axmed Maxamed Maxamuud", notaryName: "Caddawe", district: "Howlwadaag Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1168, name: "Cabdullaahi Maxamed Siyaad (Gaab)", notaryName: "Wadani", district: "Howlwadaag Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1169, name: "Cabdulqaadir Ibraahim Cali", notaryName: "Caalami", district: "Howlwadaag Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1170, name: "Cali Xaashi Cali Ugaas", notaryName: "Horseed", district: "Howlwadaag Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1171, name: "Cali Xasan Faarax", notaryName: "Xakiim", district: "Howlwadaag Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1172, name: "Cartan Cabdisalaam Calasow Dabey", notaryName: "Gardoon", district: "Howlwadaag Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1173, name: "Cismaan Cabdulle Cabdi Cisman (Jeelle)", notaryName: "Al-Taqwa", district: "Howlwadaag Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1174, name: "Ismaaciil Cali Axmed Mahad-Alle", notaryName: "Hubaal", district: "Howlwadaag Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1175, name: "Ismaacil Maxamed Cabdullaahi", notaryName: "Shahaad", district: "Howlwadaag Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1176, name: "Khalif Sh Ibraahim Dhiblaawe", notaryName: "Dhiblaawe", district: "Howlwadaag Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1177, name: "Maxamed Sh. Axmed Khaliif", notaryName: "Khalifa", district: "Howlwadaag Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1178, name: "Maxamed Cabdullaahi Cusmaan Yabarow", notaryName: "Ducaale", district: "Howlwadaag Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1179, name: "Maxamed Cabdullahi Maxamed Siyaad", notaryName: "Tayo", district: "Howlwadaag Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1180, name: "Maxamed Cabdulqaadir Sh.Xasan (Amiin)", notaryName: "Amiin", district: "Howlwadaag Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1181, name: "Maxamed Cali Nuur (Socdaal)", notaryName: "Muqdisho", district: "Howlwadaag Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1182, name: "Maxamed Ciise Dhowrane", notaryName: "Dhowrane", district: "Howlwadaag Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1183, name: "Maxamed Yacquub Isaaq Aaden", notaryName: "Xamarcade", district: "Howlwadaag Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1184, name: "Saciid Cali Cosoble", notaryName: "Muqdisho", district: "Howlwadaag Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1185, name: "Salaad Maxamed Jaamac", notaryName: "Macruuf", district: "Howlwadaag Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1186, name: "Yusuf Tuurxume Jimcaale", notaryName: "Tuurxume", district: "Howlwadaag Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1187, name: "Maxamed Aaden Sheekh Nuur", notaryName: "Qooje", district: "Howlwadaag Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1188, name: "Cabdi Cabdullaahi Abtidoon", notaryName: "Muqdisho", district: "Howlwadaaga Isg. Baar Ubax", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1189, name: "Cabdirashiid Maxamuud Axmed", notaryName: "Hilaaf", district: "Howlwadaaga Jidka Sodonka", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1190, name: "Muqtaar Macalim Cilmi Maxamed", notaryName: "Bayaan", district: "Howlwadaaga Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1191, name: "Saciid Cali Maxamuud", notaryName: "Taakulo", district: "Howlwadaag Suuq Bakaaro", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1192, name: "Xuseen Maxamuud Muuse", notaryName: "If-ka", district: "Kaaraan Boosteejada", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1193, name: "Cabdiraxman Sheekh Maxamed Xasan", notaryName: "Alxarameyn", district: "Kaaraan Ex-Hotel Laf-weyn", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1194, name: "Xasan Cusmaan Wehliye", notaryName: "Xamari", district: "Kaaraan Isg.Sanca", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1195, name: "Cabdirashid Cabdullaahi Maxamed", notaryName: "Aw-muuse", district: "Kaaraan Sanca", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1196, name: "Cabdulqaadir Cabdullaahi Maxamed", notaryName: "Alnuur", district: "Kaaraan Sanca", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1197, name: "Maxamuud Cali Cumar", notaryName: "Biyey", district: "Kaaraan Sanca", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1198, name: "Xasan Dhuxulow Xasan Raage", notaryName: "Dhuxulow", district: "Kaaraan Suuq Kaaraan", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1199, name: "Cali Xasan Cali Nuur", notaryName: "Talasan", district: "Kaaraan Wajeer", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1200, name: "Abuubakar Maxamed Suufi Maxamed", notaryName: "Bisle", district: "Kaaraan Xaliima Hiite", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1201, name: "Maxamuud Maxamed Cali Cashara", notaryName: "Cashara", district: "Kaxda Abaadir", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1202, name: "Maxamed Sh C/raxman Abuubakar", notaryName: "Badri", district: "Kaxda Abaadir Farjano", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1203, name: "Cabaas Cabdullaahi Bootaan Sahal", notaryName: "Bootaan", district: "Kaxda Gnrl.Liiqliiqato", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1204, name: "Maxamuud Aadan Xaashi Jimcaale", notaryName: "Habarwaa", district: "Kaxda Shimbiroole", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1205, name: "Xasan Aadan Ibraahim Maxamed", notaryName: "Bilaal", district: "Kaxda Shinbroole", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1206, name: "Xuseen Xasan Cabdulle Cumar", notaryName: "Salmaan", district: "Shibis", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1207, name: "Maxamed Nuur Maxamuud", notaryName: "Diiwaan", district: "Waabari Hantiwadaag", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1208, name: "Maxamed Diiriye Sabriye", notaryName: "Sabriye", district: "Waabari Hor. Hotel Mubarak", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1209, name: "Sh Axmed Cali Cismaan", notaryName: "Talawadaag", district: "Waabari Isg. Dabka", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1210, name: "Maxamed Cabdi Daahir Colaad", notaryName: "Colaad", district: "Waabari KM4", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1211, name: "Xuseen Maxamed Kadiye", notaryName: "Kadiye", district: "Waabari KM4", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1212, name: "Ismaaciil Maxamed Cumar", notaryName: "Saalixi", district: "Waabari Maaj", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1213, name: "Idris Maxamed Cusmaan", notaryName: "Waabari", district: "Waabari Makka Al-Mukarama", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1214, name: "Faadumo Cusmaan Xaaji Ismaaciil", notaryName: "Tagsan", district: "Waabari Shaqaalaha", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1215, name: "Aweys Sheekh Cali Qaasim", notaryName: "Horyaal", district: "Waabari Tree-piano", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1216, name: "Cismaan Maxamed Ismaaciil", notaryName: "Osmaan", district: "Waabari Tree-piano", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1217, name: "Aaden Cabdulqaadir Yaxye", notaryName: "Hufane", district: "Waabari Tree-piano", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1218, name: "Badrudiin Sheekh Rashiid Ibraahiim", notaryName: "Xijaaz", district: "Waabari Tree-piano", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1219, name: "Bashiir Maxamed Sheekh Maxamed", notaryName: "Karaama", district: "Waabari Tree-Piano", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1220, name: "Cali Sheekh Cabdi", notaryName: "Ilkadahab", district: "Waabari Tree-Piano", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1221, name: "Yaasiin Cabdi Xasan", notaryName: "Rogaal", district: "Waabari Tree-piano", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1222, name: "Cabdifitaax Cumar Maxamed", notaryName: "Kaatib", district: "Waabari Xaaji Baasto", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1223, name: "Cabdulqaadir Cumar Kaatib", notaryName: "Kaatib", district: "Waabari Xaaji Baasto", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1224, name: "Cusman Cumar Kaatib", notaryName: "Tahajid", district: "Waabari Xaaji Baasto", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1225, name: "Cabdullaahi Faarax Qaarey", notaryName: "Qaarey", district: "Wadajir KM4", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1226, name: "Cumar Maxamed Faarax (Gomed)", notaryName: "Faaruuq", district: "Wadajir KM4", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1227, name: "Cabdiraxman Maxamuud Cali (Time Cade)", notaryName: "Banaadir Time Cade", district: "Wadajir KM4", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1228, name: "Yoonis Cabdiraxman Maxamud Cali", notaryName: "Banaadir Danuun", district: "Wadajir KM4", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1229, name: "Cabdiraxmaan Daahir Cabdi Booliis", notaryName: "Barako", district: "Wadajir Korontada", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1230, name: "Cabdi Aaden Macalin Cabdulle", notaryName: "Mucallim", district: "Warta-Nabada Jid. Mareexan", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1231, name: "Xuseen Aaden Xasan Yaasiin", notaryName: "Xaydar", district: "Warta-Nabada Labbo Dhagex", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1232, name: "Cabdinaasir Abuukar Xaaji Dheere", notaryName: "Dheere", district: "X/Weyne Ex-Shanema Super", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1233, name: "Abuubakar Muumin Axmed", notaryName: "Baana", district: "X/Weyne Kacaan", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1234, name: "Maxamed Maxamuud Maxamed (Dr Luu)", notaryName: "Irmaan", district: "X/Weyne Kacaan Uunlaaye", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1235, name: "Muumin Axmed Abubakar", notaryName: "Rasmi Xamar", district: "X/Weyne Kacaan Uunlaaye", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1236, name: "Cabdinaasir Sh.Cali Jimcaale", notaryName: "Kheyre", district: "X/Weyne Via Roma", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1237, name: "Cabdiqadir Sheekh Cabdiwahab Maxamed", notaryName: "Cabdiwahaab", district: "X/Weyne Via Roma", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1238, name: "Cabdulwahaab Nuur Mahdi", notaryName: "Kulan", district: "X/Weyne Via Roma", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1239, name: "Maxamed Xaaji Shiikhey Abati", notaryName: "Alfaqi", district: "X/Weyne Via Roma", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1240, name: "Yaasiin Axmed Cusmaan", notaryName: "Al-Aamin", district: "X/Weyne Via Roma", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1241, name: "Muriidi Muumin Axmed", notaryName: "Rasmi Xamar", district: "X/Weyne Kacaan Uunlaaye", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1242, name: "Cabdullaahi Xasan Wehliye", notaryName: "Qalam", district: "Yaaqshid Daaru-Salaam", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1243, name: "Maxamed Ibraahim Maxamed Cali", notaryName: "Muqdisho", district: "Yaaqshid Suuq Bacaad", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1244, name: "Xassan Sh. Maxamed Farxaan", notaryName: "Muqdisho-Studio legale", district: "Yaaqshid 4 Tarjiino", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1245, name: "Cabdifataax Axmed Cabdulle Kulan", notaryName: "Kaamil", district: "Yaaqshid Daaru-Salaam", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1246, name: "Cabdisalaan Cabdiraxmaan Caafi Cabdulle", notaryName: "Caafi", district: "Yaaqshid Daaru-Salaam", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1247, name: "Cumar Cabdi Cadaawe", notaryName: "Suldaan", district: "Yaaqshid Daaru-Salaam", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1248, name: "Feysal Maxamed Maxamuud", notaryName: "Mustaqbal", district: "Yaaqshid Daaru-Salaam", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1249, name: "Maxamed Cabdi Maxamed Xuseen", notaryName: "Gurmad", district: "Yaaqshid Daaru-Salaam", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1250, name: "Xasan Maxamed Axmed (Sunni)", notaryName: "Sunni", district: "Yaaqshid Daaru-Salaam", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1251, name: "Daahir Maxamuud Maxamed", notaryName: "Xamar", district: "Yaaqshid Ex-Control Balcad", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1252, name: "Abuubakar Yusuf Wardheere", notaryName: "Wardheere", district: "Yaaqshid Ex-Suq. Xoolaha", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1253, name: "Cismaan Cadceed Cismaan Shuuriye", notaryName: "Shuuriye", district: "Yaaqshid Ex-Suuq Xoolaha", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1254, name: "Maxamed Nuur Maxmed Cali", notaryName: "Baxnaan", district: "Yaaqshid Horseed", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1255, name: "Xasan Maxamed Cali Barrow", notaryName: "Barrow", district: "Yaaqshid Horseed", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1256, name: "Nuur Cali Culusow Geedi", notaryName: "Culusow", district: "Yaaqshid Siinaay", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1257, name: "Maxamed Cismaan Wehliye", notaryName: "Salaam Muqdisho", district: "Yaaqshid Suuq Bacaad", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1258, name: "Cabdi Cadaawe Cali", notaryName: "Ex-Banaadir", district: "Yaaqshid Suuq Bacaad", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1259, name: "Cabdi Yuusuf Xasan Maahir", notaryName: "Maahir", district: "Yaaqshid Suuq Bacaad", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1260, name: "Cabdiraxmaan Xuseen Maxamuud", notaryName: "Timo-weyne", district: "Yaaqshid Suuq Bacaad", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1261, name: "Cabdiwali Xasan Culusow Cali", notaryName: "Al-faraj", district: "Yaaqshid Suuq Bacaad", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1262, name: "Cali Macalin Xasan Maxamuud", notaryName: "Kalsan", district: "Yaaqshid Suuq Bacaad", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1263, name: "Daahir Xaaji Xasan Axmed", notaryName: "Waano", district: "Yaaqshid Suuq Bacaad", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1264, name: "Maxamed Xuseen Xasan", notaryName: "Talawadaag", district: "Yaaqshid Suuq Bacaad", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1265, name: "Maxamed Cabdullaahi Hagar Maxamuud", notaryName: "Balli", district: "Yaaqshid Suuq Bacaad", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1266, name: "Qaasim Maxamed Ibrahim Barrow", notaryName: "Qaasimmi", district: "Yaaqshid Suuq Bacaad", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1267, name: "Aweys Ibraahim Xuseen", notaryName: "Aweis", district: "Yaaqshid Towfiiq", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1268, name: "Ibrahim Xasan Sheekh Xuseen", notaryName: "Towfiiq", district: "Yaaqshid Towfiiq", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1269, name: "Muxuyadiin Xasan Maxamed", notaryName: "Azhari", district: "Yaaqshid Towfiiq", region: "Banaadir", issueDate: "30 JANUARY 2022"},
+    {id: 1270, name: "Abuubakar Jeylaani Sh. Abuukar (Wakiil)", notaryName: "Al-Falax", district: "Afgooye Ceelasha", region: "Sh.Hoose", issueDate: "30 JANUARY 2022"},
+    {id: 1271, name: "Axmed Xasan Shidane", notaryName: "Daaru Salaam", district: "Afgooye Ceelasha", region: "Sh.Hoose", issueDate: "30 JANUARY 2022"},
+    {id: 1272, name: "Cabaas Cabdiraxmaan Maxamuud", notaryName: "Banadir Al-Cabasiyah", district: "Afgooye Ceelasha", region: "Sh. Hoose", issueDate: "30 JANUARY 2022"},
+    {id: 1273, name: "Cabdiraxmaan Axmed Shire Guuleed", notaryName: "Dhiblaawe", district: "Afgooye Ceelasha", region: "Sh.Hoose", issueDate: "30 JANUARY 2022"},
+    {id: 1274, name: "Cabdirisaaq Xasan Xuseen", notaryName: "Shaaciye", district: "Afgooye Ceelasha", region: "Sh.Hoose", issueDate: "30 JANUARY 2022"},
+    {id: 1275, name: "Cabdishakuur Xasan Cilmi", notaryName: "Furqaan", district: "Afgooye Ceelasha", region: "Sh.Hoose", issueDate: "30 JANUARY 2022"},
+    {id: 1276, name: "Cabdixakiim Cabdiqaadir Muudey", notaryName: "Zoobe", district: "Afgooye Ceelasha", region: "Sh.Hoose", issueDate: "30 JANUARY 2022"},
+    {id: 1277, name: "Cabdullaahi Maxamed Muuse", notaryName: "Ogaal", district: "Afgooye Ceelasha", region: "Sh.Hoose", issueDate: "30 JANUARY 2022"},
+    {id: 1278, name: "Cali Maxamuud Jimcaale", notaryName: "Cali Biil", district: "Afgooye Ceelasha", region: "Sh.Hoose", issueDate: "30 JANUARY 2022"},
+    {id: 1279, name: "Cumar Cali Maxamuud Cawaale", notaryName: "CaliAgoon", district: "Afgooye Ceelasha", region: "Sh.Hoose", issueDate: "30 JANUARY 2022"},
+    {id: 1280, name: "Feysal Cabdirashiid Axmed", notaryName: "Damal", district: "Ceelasha Afgooye", region: "Sh.Hoose", issueDate: "30 JANUARY 2022"},
+    {id: 1281, name: "Haashim Maxamed Yusuf (Kabaqori)", notaryName: "Kabaqori", district: "Afgooye Ceelasha", region: "Sh. Hoose", issueDate: "30 JANUARY 2022"},
+    {id: 1282, name: "Liibaan Jimcaale Ibraahim (Islow)", notaryName: "Liibaan", district: "Afgooye Ceelasha", region: "Sh. Hoose", issueDate: "30 JANUARY 2022"},
+    {id: 1283, name: "Maxamed Cabdi Axmed (Kalajaban)", notaryName: "Hiigsi", district: "Afgooye Ceelasha", region: "Sh. Hoose", issueDate: "30 JANUARY 2022"},
+    {id: 1284, name: "Maxamed Cabdifataax Cismaan", notaryName: "Baydhabo", district: "Baydhabo", region: "Baay", issueDate: "30 JANUARY 2022"},
+    {id: 1285, name: "Maxamed Cali Maxamuud Xeyle", notaryName: "Muutaale", district: "Afgooye Ceelasha", region: "Sh.Hoose", issueDate: "30 JANUARY 2022"},
+    {id: 1286, name: "Maxamed M.Maxamuud Cumar (Madoobe)", notaryName: "Lafoole Gacaliye", district: "Afgooye Ceelasha", region: "Sh. Hoose", issueDate: "30 JANUARY 2022"},
+    {id: 1287, name: "Maxamed Mukhtaar Cabdullaahi", notaryName: "Mukhtaar", district: "Afgooye Ceelasha", region: "Sh.Hoose", issueDate: "30 JANUARY 2022"},
+    {id: 1288, name: "Maxamed Xaaji Jimcaale (Biil)", notaryName: "Dr Biil", district: "Afgooye Ceelasha", region: "Sh.Hoose", issueDate: "30 JANUARY 2022"},
+    {id: 1289, name: "Najiib Xasan Cumar Maxamed", notaryName: "Shabeel", district: "Afgooye Ceelasha", region: "Sh.Hoose", issueDate: "30 JANUARY 2022"},
+    {id: 1290, name: "Xasan Warsame Cali", notaryName: "Suuley", district: "Afgooye Ceelasha", region: "Sh.Hoose", issueDate: "30 JANUARY 2022"},
+    {id: 1291, name: "Liibaan Cismaan Aaden Axmed", notaryName: "Bader", district: "Afgooye Ceelasha", region: "Sh. Hoose", issueDate: "30 JANUARY 2022"},
+    {id: 1292, name: "Maxamed Maxamuud Ismaaciil", notaryName: "Karaama", district: "Afgooye Ceelasha", region: "Sh.Hoose", issueDate: "30 JANUARY 2022"},
+    {id: 1293, name: "Liibaan Cabdullaahi Muumin", notaryName: "Liibaan", district: "Afgooye Ceelasha", region: "Sh.Hoose", issueDate: "30 JANUARY 2022"},
+    {id: 1294, name: "Maxamed Cusmaan Ibraahim", notaryName: "Caddaala", district: "Baladweyne", region: "Hiiraan", issueDate: "30 JANUARY 2022"},
+    {id: 1295, name: "Aadan Ibraahim Buule", notaryName: "Koonfur Galbeed", district: "Baydhabo", region: "Baay", issueDate: "30 JANUARY 2022"},
+    {id: 1296, name: "Khadiijo Axmed Muudey", notaryName: "Muudey", district: "Baydhabo", region: "Baay", issueDate: "30 JANUARY 2022"},
+    {id: 1297, name: "Maxamed Cabdiraxmaan Aadan", notaryName: "Daacad", district: "Baydhabo", region: "Baay", issueDate: "30 JANUARY 2022"},
+    {id: 1298, name: "Xuseen Isgoowe Xuseen (Xaqsoor)", notaryName: "Xaqsoor", district: "Baydhabo", region: "Baay", issueDate: "30 JANUARY 2022"},
+    {id: 1299, name: "Xasan Maxamed Xalane", notaryName: "Buuloburta", district: "Buuloburta", region: "Hiiraan", issueDate: "30 JANUARY 2022"},
+    {id: 1300, name: "Cabdigargaar Axmed Xaashi", notaryName: "Gargaar", district: "Cabudwaaq", region: "Galgaduud", issueDate: "30 JANUARY 2022"},
+    {id: 1301, name: "Cabdinaasir Maxamed Xasan", notaryName: "Al-hudaa", district: "Cabudwaaq", region: "Galgaduud", issueDate: "30 JANUARY 2022"},
+    {id: 1302, name: "Xasan Cabdi Tahliil", notaryName: "Kaah", district: "Cabudwaaq", region: "Galgaduud", issueDate: "30 JANUARY 2022"},
+    {id: 1303, name: "Daahir Xasan Faarax", notaryName: "Januune", district: "Cabudwaaq", region: "Galgaduud", issueDate: "30 JANUARY 2022"},
+    {id: 1304, name: "Bashiir Xuseen Maxamed", notaryName: "Hanaano", district: "Dhuusamareeb", region: "Galgaduud", issueDate: "30 JANUARY 2022"},
+    {id: 1305, name: "Cabdullaahi Cali Maxamed", notaryName: "Towfiiq", district: "Gaalgacyo", region: "Mudug Glg", issueDate: "30 JANUARY 2022"},
+    {id: 1306, name: "Yuusuf Cabdisalaam Warsame", notaryName: "Geeska Afrika", district: "Gaalgacyo", region: "Mudug Pld", issueDate: "30 JANUARY 2022"},
+    {id: 1307, name: "Saciid Cabdullaahi Cabdi", notaryName: "Garawe", district: "Garawe", region: "Nugaal", issueDate: "30 JANUARY 2022"},
+    {id: 1308, name: "Xabiib Maxamed Kulmiye", notaryName: "Jubba", district: "Kismaayo", region: "Jub.Hoose", issueDate: "30 JANUARY 2022"},
+    {id: 1309, name: "Xasan Maxamed Nuur", notaryName: "Abuuraas", district: "Kismaayo", region: "Jub.Hoose", issueDate: "30 JANUARY 2022"},
     {
         id: 1310,
         name: "Cabdikariim Xasan Nuur Maxamed",
@@ -6341,12 +5112,14 @@
         // State variables
         let currentPage = 1;
         const rowsPerPage = 10;
-        let filteredNotaries = [...notaries];
+        let filteredNotaries = [];
         let sortColumn = 'id';
         let sortDirection = 'asc';
+        let hasSearched = false;
 
         // DOM elements
         const tableBody = document.getElementById('table-body');
+         document.getElementById('currentYear').textContent = new Date().getFullYear();
         const searchInput = document.getElementById('search');
         const regionFilter = document.getElementById('region-filter');
         const districtFilter = document.getElementById('district-filter');
@@ -6363,8 +5136,30 @@
         function init() {
             populateFilters();
             updateStats();
-            renderTable();
+            showSearchPrompt();
             setupEventListeners();
+        }
+
+        // Show search prompt when no search has been performed
+        function showSearchPrompt() {
+            tableBody.innerHTML = `
+                <tr>
+                    <td colspan="6" class="search-prompt">
+                        Please enter a search term to find notaries
+                    </td>
+                </tr>
+            `;
+        }
+
+        // Show no results message
+        function showNoResults() {
+            tableBody.innerHTML = `
+                <tr>
+                    <td colspan="6" class="no-results">
+                        No notaries found matching your search criteria
+                    </td>
+                </tr>
+            `;
         }
 
         // Populate filter dropdowns
@@ -6419,8 +5214,20 @@
             const districtValue = districtFilter.value;
             const dateValue = dateFilter.value;
             
+            // If no search term and no filters applied, show search prompt
+            if (!searchTerm && !regionValue && !districtValue && !dateValue) {
+                hasSearched = false;
+                filteredNotaries = [];
+                showSearchPrompt();
+                updatePagination();
+                return;
+            }
+            
+            hasSearched = true;
+            
             filteredNotaries = notaries.filter(notary => {
                 const matchesSearch = 
+                    !searchTerm ||
                     notary.name.toLowerCase().includes(searchTerm) ||
                     notary.notaryName.toLowerCase().includes(searchTerm) ||
                     notary.district.toLowerCase().includes(searchTerm);
@@ -6432,18 +5239,23 @@
                 return matchesSearch && matchesRegion && matchesDistrict && matchesDate;
             });
             
+            // Apply sorting
+            sortNotaries(sortColumn, false);
+            
             // Reset to first page after filtering
             currentPage = 1;
             renderTable();
         }
 
         // Sort notaries
-        function sortNotaries(column) {
-            if (sortColumn === column) {
-                sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
-            } else {
-                sortColumn = column;
-                sortDirection = 'asc';
+        function sortNotaries(column, updateDirection = true) {
+            if (updateDirection) {
+                if (sortColumn === column) {
+                    sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+                } else {
+                    sortColumn = column;
+                    sortDirection = 'asc';
+                }
             }
             
             filteredNotaries.sort((a, b) => {
@@ -6468,6 +5280,19 @@
         function renderTable() {
             // Clear existing rows
             tableBody.innerHTML = '';
+            
+            // If no search has been performed, show search prompt
+            if (!hasSearched) {
+                showSearchPrompt();
+                return;
+            }
+            
+            // If no results after search, show no results message
+            if (filteredNotaries.length === 0) {
+                showNoResults();
+                updatePagination();
+                return;
+            }
             
             // Calculate pagination
             const startIndex = (currentPage - 1) * rowsPerPage;
@@ -6502,8 +5327,8 @@
             const totalPages = Math.ceil(filteredNotaries.length / rowsPerPage);
             
             pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
-            prevPageBtn.disabled = currentPage === 1;
-            nextPageBtn.disabled = currentPage === totalPages || totalPages === 0;
+            prevPageBtn.disabled = currentPage === 1 || !hasSearched || filteredNotaries.length === 0;
+            nextPageBtn.disabled = currentPage === totalPages || totalPages === 0 || !hasSearched;
         }
 
         // Update sort indicators in table header
@@ -6533,7 +5358,9 @@
             // Table header sorting
             document.querySelectorAll('th[data-sort]').forEach(th => {
                 th.addEventListener('click', () => {
-                    sortNotaries(th.getAttribute('data-sort'));
+                    if (hasSearched && filteredNotaries.length > 0) {
+                        sortNotaries(th.getAttribute('data-sort'));
+                    }
                 });
             });
             
